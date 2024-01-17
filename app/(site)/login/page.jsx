@@ -14,10 +14,22 @@ export default function Login() {
 
   const logingUser = async (e) => {
     e.preventDefault();
-    signIn("credentials", { ...data, redirect: false }).then(() => {
-      toast.success("Login Successfully");
-      router.push("/dashboard");
-    });
+    signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("Login Successfully");
+          router.push("/dashboard");
+        } else {
+          toast.error("Email or Password is incorrect");
+        }
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      });
   };
 
   return (
@@ -36,6 +48,7 @@ export default function Login() {
             id="email"
             type="email"
             value={data.email}
+            required
             onChange={(e) =>
               setData({
                 ...data,
@@ -57,6 +70,7 @@ export default function Login() {
             type="password"
             placeholder="******************"
             value={data.password}
+            required
             onChange={(e) =>
               setData({
                 ...data,
