@@ -18,7 +18,7 @@ export default function Registetr() {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const response = await fetch("/api/register", {
+    const response = await fetch("/api/vendor-register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

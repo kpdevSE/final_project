@@ -8,7 +8,6 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { data: session, status } = useSession();
-  console.log(session);
 
   useEffect(() => {
     setTimeout(() => {
@@ -30,6 +29,7 @@ export default function Dashboard() {
           <p className="text-[50px] text-center">
             Hiii......... {session?.user?.email}
           </p>
+          <p>{session.user.address}</p>
           {status === "authenticated" ? (
             <button
               onClick={() => {

@@ -11,7 +11,7 @@ export async function POST(request) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
 
-  const existingUser = await prisma.user.findUnique({
+  const existingUser = await prisma.vendor.findUnique({
     where: {
       email: email,
     },
@@ -23,7 +23,7 @@ export async function POST(request) {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const user = await prisma.user.create({
+  const user = await prisma.vendor.create({
     data: {
       name,
       email,
