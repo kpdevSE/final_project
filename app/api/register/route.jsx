@@ -11,15 +11,19 @@ export async function POST(request) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
 
-  const existingUser = await prisma.user.findUnique({
-    where: {
-      email: email,
-    },
-  });
+  // if (typeof email !== String) {
+  //   return new NextResponse("Email is Not a String");
+  // }
 
-  if (existingUser) {
-    return new NextResponse("User Already Exist", { status: 400 });
-  }
+  // const existingUser = await prisma.user.findUnique({
+  //   where: {
+  //     email: { email },
+  //   },
+  // });
+
+  // if (existingUser) {
+  //   return new NextResponse("User Already Exist", { status: 400 });
+  // }
 
   const hashPassword = await bcrypt.hash(password, 10);
 
