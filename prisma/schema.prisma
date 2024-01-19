@@ -105,3 +105,18 @@ model VendorSession {
   updatedAt    DateTime  @updatedAt
   vendor       Vendor     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Eventz {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  firstName         String?
+  lastName         String?
+  number        String?
+  imageUrl      String?
+  comapany       String?
+  email         String?
+  address       String?
+  description   String?
+  option        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
