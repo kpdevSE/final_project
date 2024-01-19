@@ -1,15 +1,14 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Images
-import image from "../../../public/homePage/HdrImg.png";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
+import image from "../../../public/homePage/HdrImg.png";
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -20,12 +19,16 @@ export default function Dashboard() {
     AOS.init({
       duration: 2000,
     });
-  }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+    const securePage = async () => {
+      const sessionClient = await getSession();
+      if (!sessionClient) {
+        router.push("/login");
+      } else {
+        setLoading(false);
+      }
+    };
+    securePage();
   }, []);
   return (
     <div>
@@ -50,60 +53,60 @@ export default function Dashboard() {
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-left"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-left"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-left"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-left"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-left"
             className="w-[500px] h-[35vh]"
           />
           <Image
             src={image}
-            data-aos="fade-up"
+            data-aos="fade-right"
             className="w-[500px] h-[35vh]"
           />
-          <Image src={image} data-aos="fade-up" />
+          <Image src={image} data-aos="fade-left" />
         </div>
       )}
     </div>

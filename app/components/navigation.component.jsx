@@ -32,8 +32,8 @@ export default function Navigation() {
     },
     {
       id: 4,
-      item: "Planes",
-      itemLink: "/",
+      item: "Dashboard",
+      itemLink: "/dashboard",
     },
   ];
   return (
@@ -76,6 +76,30 @@ export default function Navigation() {
                 </Link>
               )}
             </div>
+            <li>
+              <div className="dropdown dropdown-hover">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn m-1 text-lg hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white bg-white border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
+                  Hover
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/admin-login"}>Admin</Link>
+                  </li>
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/register"}>User</Link>
+                  </li>
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/vendor-register"}>Become a Seller</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
             <li>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

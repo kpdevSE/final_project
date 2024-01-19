@@ -1,3 +1,4 @@
+import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 import Navigation from "./components/navigation.component.jsx";
 import Provider from "./context/AuthContext.jsx";
