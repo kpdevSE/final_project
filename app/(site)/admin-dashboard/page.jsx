@@ -1,3 +1,8 @@
 export default function AdminDashboard() {
-  return <div>Admin Dashbaord</div>;
+  const dummyAdminCredentials = {
+    username: "kpdev",
+    email: "kanishkapasindu6@gmail.com",
+    password: "kpdev",
+  };
+  return <div>Hey..{dummyAdminCredentials.username}</div>;
 }

@@ -11,9 +11,13 @@ export async function POST(request) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
 
+  // if (typeof email !== String) {
+  //   return new NextResponse("Email is Not a String");
+  // }
+
   const existingUser = await prisma.user.findUnique({
     where: {
-      email: email,
+      email: { email },
     },
   });
 
