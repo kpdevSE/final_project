@@ -1,22 +1,28 @@
+// import { NextResponse } from "next/server";
+// import prisma from "../../libs/prismadb";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 import { NextResponse } from "next/server";
 
 export async function POST(request, response) {
   try {
     const body = await request.json();
     const {
-      firstName,
-      lastName,
-      imageUrl,
-      email,
-      number,
-      address,
-      option,
-      comapany,
-      description,
+      firstName: firstName,
+      lastName: lastName,
+      imageUrl: imageUrl,
+      number: number,
+      email: email,
+      address: address,
+      option: option,
+      comapany: comapany,
+      description: description,
     } = body;
     console.log(body);
 
-    const newEvents = await prisma.events.create({
+    const newEvents = await prisma.eventz.create({
       data: {
         firstName,
         lastName,
@@ -33,8 +39,15 @@ export async function POST(request, response) {
       return NextResponse.json({
         newEvents,
       });
+    } else {
+      console.log("faild to create");
     }
-  } catch {
-    return new NextResponse(Error);
+    console.log(newEvents);
+  } catch (error) {
+    console.error("Error creating event:", error);
+    return new NextResponse({
+      status: 500,
+      body: "Internal Server Error",
+    });
   }
 }

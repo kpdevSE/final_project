@@ -15,10 +15,23 @@ export default function AdminAddEvent() {
   const [number, setNumber] = useState("");
   const [option, setOption] = useState("");
 
+  // const [data, setData] = useState({
+  //   firstName: firstName,
+  //   lastName: "",
+  //   imageUrl: imageUrl,
+  //   email: "",
+  //   comapany: "",
+  //   address: "",
+  //   option: "",
+  //   number: "",
+  //   description: "",
+  // });
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const body = {
         firstName,
@@ -31,7 +44,7 @@ export default function AdminAddEvent() {
         number,
         description,
       };
-
+      console.log(body);
       const response = await fetch("/api/add-events", {
         method: "POST",
         headers: {
@@ -39,12 +52,15 @@ export default function AdminAddEvent() {
         },
         body: JSON.stringify(body),
       });
+
       if (!response.ok) {
+        const responseBody = await response.json(); // Parse the response body as JSON
         console.error("Request failed:", response.status, response.statusText);
-        toast.error("Registration Failed");
+        console.error("Error details:", responseBody); // Log detailed error information
+        toast.error("Event creation failed. See console for details.");
       } else {
         toast.success("Event added successfully");
-        router.push("/admin-dashboard");
+        // router.push("/admin-dashboard");
       }
     } catch {
       toast.error("something went wrong");
@@ -58,13 +74,11 @@ export default function AdminAddEvent() {
         <UploadDropzone
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {
-            // Do something with the response
             console.log("Files: ", res);
             toast.success("Image Uploaded");
             setImageUrl(res[0].url);
           }}
           onUploadError={(error) => {
-            // Do something with the error.
             alert(`ERROR! ${error.message}`);
           }}
         />
@@ -78,6 +92,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={firstName}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   firstName: e.target.value,
+                // });
                 setfirstName(e.target.value);
               }}
               required
@@ -97,6 +115,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={lastName}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   lastName: e.target.value,
+                // });
                 setLastName(e.target.value);
               }}
               required
@@ -118,6 +140,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={number}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   number: e.target.value,
+                // });
                 setNumber(e.target.value);
               }}
               required
@@ -137,6 +163,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={comapany}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   comapany: e.target.value,
+                // });
                 setCompany(e.target.value);
               }}
               required
@@ -158,6 +188,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={email}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   email: e.target.value,
+                // });
                 setEmail(e.target.value);
               }}
               required
@@ -177,6 +211,10 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={address}
               onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   address: e.target.value,
+                // });
                 setAddress(e.target.value);
               }}
               required
@@ -198,6 +236,10 @@ export default function AdminAddEvent() {
             placeholder=" "
             value={description}
             onChange={(e) => {
+              // setData({
+              //   ...data,
+              //   description: e.target.value,
+              // });
               setDescription(e.target.value);
             }}
             required
@@ -213,16 +255,21 @@ export default function AdminAddEvent() {
             className="select select-bordered w-full max-w-xs"
             value={option}
             onChange={(e) => {
+              // setData({
+              //   ...data,
+              //   option: e.target.value,
+              // });
               setOption(e.target.value);
             }}>
-            <option disabled selected>
+            {/* <option disabled selected>
               Who shot first?
-            </option>
-            <option value="djs">DJs</option>
+            </option> */}
+            <option disabled>Choose</option>
             <option value="getTogether">Get Togethers</option>
             <option value="weddings">Weddings</option>
             <option value="bday">Birthday Parties</option>
             <option value="conserts">Live Conserts</option>
+            <option value="djs">Dj</option>
           </select>
         </div>
         <button
