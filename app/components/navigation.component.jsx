@@ -53,12 +53,12 @@ export default function Navigation() {
                 <Link href={e.itemLink} key={e.id}>
                   <li
                     key={e.id}
-                    className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg border border-[#01a2b7] shadow-md shadow-[#8ceaf7]">
+                    className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden  lg:block  rounded-lg border border-[#01a2b7] shadow-md shadow-[#8ceaf7]">
                     {e.item}
                   </li>
                 </Link>
               ))}
-            <div className="hidden md:block lg:block">
+            <div className="hidden lg:block">
               {status === "authenticated" ? (
                 <button
                   className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg shadow-md shadow-[#8ceaf7]"
@@ -81,7 +81,7 @@ export default function Navigation() {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn m-1 text-lg hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white bg-white border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
+                  className="btn m-1 lg:text-lg md:text-md text-sm hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white bg-white border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
                   Hover
                 </div>
                 <ul
@@ -107,7 +107,7 @@ export default function Navigation() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6 md:hidden lg:hidden"
+                className="w-6 h-6 lg:hidden"
                 onClick={() => {
                   setOpen(true);
                 }}>
