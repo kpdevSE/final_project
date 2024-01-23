@@ -56,7 +56,7 @@ export default function AdminAddEvent() {
         toast.error("Event creation failed. Please try again.");
       } else {
         toast.success("Event added successfully");
-        // router.push("/admin-dashboard");
+        router.push("/admin-events");
       }
     } catch {
       toast.error("something went wrong");
@@ -260,7 +260,7 @@ export default function AdminAddEvent() {
             {/* <option disabled selected>
               Who shot first?
             </option> */}
-            <option disabled>Choose</option>
+            <option>Choose</option>
             <option value="getTogether">Get Togethers</option>
             <option value="weddings">Weddings</option>
             <option value="bday">Birthday Parties</option>
