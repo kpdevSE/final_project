@@ -44,7 +44,6 @@ export default function AdminAddEvent() {
         number,
         description,
       };
-      console.log(body);
       const response = await fetch("/api/add-events", {
         method: "POST",
         headers: {
@@ -54,10 +53,7 @@ export default function AdminAddEvent() {
       });
 
       if (!response.ok) {
-        const responseBody = await response.json(); // Parse the response body as JSON
-        console.error("Request failed:", response.status, response.statusText);
-        console.error("Error details:", responseBody); // Log detailed error information
-        toast.error("Event creation failed. See console for details.");
+        toast.error("Event creation failed. Please try again.");
       } else {
         toast.success("Event added successfully");
         // router.push("/admin-dashboard");
