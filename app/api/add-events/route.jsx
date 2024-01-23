@@ -1,12 +1,10 @@
-// import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 // import prisma from "../../libs/prismadb";
 
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-import { NextResponse } from "next/server";
-
-export async function POST(request, response) {
+export async function POST(request, res) {
   try {
     const body = await request.json();
     const {
@@ -35,17 +33,17 @@ export async function POST(request, response) {
         description,
       },
     });
-    if (response.ok) {
+    if (!res.ok) {
       return NextResponse.json({
-        newEvents,
+        error: "Response Faild",
       });
     } else {
-      console.log("faild to create");
+      return NextResponse.json(console.log(newEvents));
     }
     console.log(newEvents);
   } catch (error) {
     console.error("Error creating event:", error);
-    return new NextResponse({
+    return NextResponse({
       status: 500,
       body: "Internal Server Error",
     });
