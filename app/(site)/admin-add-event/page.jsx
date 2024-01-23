@@ -56,7 +56,7 @@ export default function AdminAddEvent() {
         toast.error("Event creation failed. Please try again.");
       } else {
         toast.success("Event added successfully");
-        // router.push("/admin-dashboard");
+        router.push("/admin-events");
       }
     } catch {
       toast.error("something went wrong");
