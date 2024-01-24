@@ -1,7 +1,6 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
@@ -10,15 +9,24 @@ import { Fragment, useState } from "react";
 import Link from "next/link";
 import logo from "../../public/logo/logo.png";
 
-export default function Navigation() {
+export default function HomeNavigation() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const { data: session, status } = useSession();
   const navigationItems = [
     {
       id: 1,
-      item: "Dashboard",
-      itemLink: "/dashboard",
+      item: "Home",
+      itemLink: "/",
+    },
+    {
+      id: 2,
+      item: "Contact",
+      itemLink: "/",
+    },
+    {
+      id: 3,
+      item: "About",
+      itemLink: "/",
     },
   ];
   return (
@@ -61,6 +69,29 @@ export default function Navigation() {
                 </Link>
               )}
             </div>
+            <li>
+              <div className="dropdown dropdown-hover">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn m-1 lg:text-lg md:text-md text-sm hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white bg-white border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
+                  Hover
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/admin-login"}>Admin</Link>
+                  </li>
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/register"}>User</Link>
+                  </li>
+                  <li className="hover:bg-[#01a2b7] rounded-lg hover:text-white">
+                    <Link href={"/vendor-register"}>Become a Seller</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
 
             <li>
               <svg

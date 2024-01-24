@@ -5,6 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/flowbite/**/*.js",
+    "node_modules/preline/dist/*.js",
   ],
   theme: {
     extend: {
@@ -15,5 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("preline/plugin"), require("daisyui")],
 };
