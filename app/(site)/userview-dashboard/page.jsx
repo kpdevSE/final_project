@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Images
+import Navigation from "@/app/components/navigation.component";
 import bdays from "../../../public/bday/bdays.png";
 import live from "../../../public/conserts/live.png";
 import djs from "../../../public/djs/djs.png";
@@ -42,19 +43,35 @@ export default function UserDashboard() {
     },
   ];
   return (
-    <div className="w-[85%] h-screen mx-auto flex items-center justify-between">
-      {dummyData.map((e) => {
-        return (
-          <Link href={e.link}>
-            <div
-              className="w-[200px] h-[250px]flex item-center justify-center flex-col rounded-lg shadow-lg shadow-slate-500"
-              key={e.id}>
-              <Image src={e.image} className="w-[200px] h-[200px] " alt="" />
-              <h1 className="text-center">{e.title}</h1>
-            </div>
+    <div>
+      <Navigation />
+      <div className="w-[85%] h-full mx-auto relative top-44">
+        <div className="grid place-items-center grid-cols-1 lg:grid-cols-4 gap-8 mt-9 md:grid-cols-2 ">
+          {dummyData.map((e) => {
+            return (
+              <Link href={e.link}>
+                <div
+                  className="w-[200px] h-[250px]flex item-center justify-center flex-col rounded-lg shadow-lg shadow-slate-500"
+                  key={e.id}>
+                  <Image
+                    src={e.image}
+                    className="w-[200px] h-[200px] "
+                    alt=""
+                  />
+                  <h1 className="text-center">{e.title}</h1>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
+          <Link
+            href={"/dashboard"}
+            className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
+            Go Back
           </Link>
-        );
-      })}
+        </div>
+      </div>
     </div>
   );
 }
