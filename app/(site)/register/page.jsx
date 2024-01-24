@@ -2,6 +2,7 @@
 
 import LoadingScreen from "@/app/components/loading.component";
 import "aos/dist/aos.css";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -180,11 +181,11 @@ export default function Registetr() {
                 type="submit">
                 Sign In
               </button>
-              <a
+              <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                href="#">
-                Forgot Password?
-              </a>
+                href={"/login"}>
+                All ready have a Account?
+              </Link>
             </div>
           </form>
         </div>
