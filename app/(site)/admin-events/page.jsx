@@ -32,8 +32,8 @@ export default function AdminEvents() {
   }, []);
 
   return (
-    <div className="w-[85%] h-full mx-auto">
-      <div className="grid place-items-start grid-cols-4">
+    <div className="w-[85%] h-full mx-auto relative top-44 ">
+      <div className="grid place-items-center grid-cols-4 gap-8">
         {data.map((event) => (
           <div key={event.id} className="w-[200px]">
             <Image src={event.imageUrl} width={200} height={100} alt="" />
