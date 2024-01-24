@@ -1,6 +1,5 @@
 import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
-import Navigation from "./components/navigation.component.jsx";
 import Provider from "./context/AuthContext.jsx";
 import ToastContext from "./context/ToastContainer.jsx";
 import "./globals.css";
@@ -17,7 +16,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <Navigation />
           <ToastContext />
           {children}
         </Provider>
