@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
 export default function Weddiing() {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
@@ -77,11 +79,11 @@ export default function Weddiing() {
             <h1>{event.company}</h1>
             <h1>{event.email}</h1>
             <h1>{event.address}</h1>
-            {/* <Link
-              href={`/admin-events/${event.id}`}
+            <Link
+              href={`/gettogether/${event.id}`}
               className="bg-black w-[200px] h-[50px] flex items-center justify-center text-white rounded-lg">
               More Information
-            </Link> */}
+            </Link>
           </div>
         ))}
       </div>
