@@ -2,15 +2,21 @@
 
 import Navigation from "@/app/components/navigation.component";
 import { Modal } from "antd";
+import { getSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+
+// Images
+import logo from "../../../public/logo/logo.png";
 
 export default function Weddiing() {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const cancelButtonRef = useRef(null);
 
@@ -35,6 +41,13 @@ export default function Weddiing() {
     setTimeout(() => {
       setloading(false);
     }, 1500);
+    const securePage = async () => {
+      const sessionClient = await getSession();
+      if (!sessionClient) {
+        router.push("/login");
+      }
+    };
+    securePage();
   }, []);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,23 +70,26 @@ export default function Weddiing() {
     <div>
       <Navigation />
       <div className="w-[85%] h-full mx-auto relative top-44">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          type="btn"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-6 h-6"
-          onClick={() => {
-            setOpen(true);
-          }}>
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
+        <div className="flex items-center justify-between w-[95%] mx-auto">
+          <Image src={logo} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            type="btn"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+            onClick={() => {
+              setOpen(true);
+            }}>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+        </div>
 
         <div className="grid place-items-center grid-cols-1 mt-9 lg:grid-cols-3 md:grid-cols-2 gap-3">
           {data.map((event) => (
@@ -166,7 +182,7 @@ export default function Weddiing() {
                 type="search"
                 id="default-search"
                 className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
-                placeholder="Search Your Events......"
+                placeholder="Search Your Events Using Company Name......"
                 value={searchQuery}
                 onChange={handleChange}
                 required
