@@ -1,8 +1,12 @@
+"use client";
+import { getSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Images
 import Navigation from "@/app/components/navigation.component";
+import { useEffect, useState } from "react";
 import bdays from "../../../public/bday/bdays.png";
 import live from "../../../public/conserts/live.png";
 import djs from "../../../public/djs/djs.png";
@@ -10,6 +14,8 @@ import get from "../../../public/gettogether/together.png";
 import weddingImage from "../../../public/wedding/wedding.png";
 
 export default function UserDashboard() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const dummyData = [
     {
       id: "1",
@@ -42,6 +48,17 @@ export default function UserDashboard() {
       image: bdays,
     },
   ];
+  useEffect(() => {
+    const securePage = async () => {
+      const sessionClient = await getSession();
+      if (!sessionClient) {
+        router.push("/login");
+      } else {
+        setLoading(false);
+      }
+    };
+    securePage();
+  }, []);
   return (
     <div>
       <Navigation />
