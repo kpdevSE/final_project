@@ -87,6 +87,13 @@ export default function Weddiing() {
           </div>
         ))}
       </div>
+      <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
+        <Link
+          href={"/userview-dashboard"}
+          className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
+          Go Back
+        </Link>
+      </div>
     </div>
   );
 }
