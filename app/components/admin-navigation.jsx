@@ -92,6 +92,9 @@ export default function AdminNavigationPanel() {
                             <Link href={"/admin-events"}>
                               <li>All Events</li>
                             </Link>
+                            <Link href={"/admin-vendorview"}>
+                              <li>Vendors View</li>
+                            </Link>
                             <Link href={"/admin-login"}>Logout</Link>
                           </ul>
                         </div>
