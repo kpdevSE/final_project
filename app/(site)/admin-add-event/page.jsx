@@ -235,10 +235,6 @@ export default function AdminAddEvent() {
               placeholder=" "
               value={description}
               onChange={(e) => {
-                // setData({
-                //   ...data,
-                //   description: e.target.value,
-                // });
                 setDescription(e.target.value);
               }}
               required
@@ -254,15 +250,8 @@ export default function AdminAddEvent() {
               className="select select-bordered w-full max-w-xs"
               value={option}
               onChange={(e) => {
-                // setData({
-                //   ...data,
-                //   option: e.target.value,
-                // });
                 setOption(e.target.value);
               }}>
-              {/* <option disabled selected>
-              Who shot first?
-            </option> */}
               <option>Choose</option>
               <option value="getTogether">Get Togethers</option>
               <option value="weddings">Weddings</option>

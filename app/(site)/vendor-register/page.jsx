@@ -13,6 +13,9 @@ export default function Registetr() {
     address: "",
     mobile: "",
     nicNumber: "",
+    description: "",
+    option: "",
+    availability: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -113,6 +116,7 @@ export default function Registetr() {
                 placeholder="address"
               />
             </div>
+
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -172,6 +176,59 @@ export default function Registetr() {
                   })
                 }
               />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="address">
+                Address
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="description"
+                type="description"
+                value={data.description}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    description: e.target.value,
+                  })
+                }
+                placeholder="I am ....."
+              />
+            </div>
+            <div className="relative z-0 w-full mb-5 group flex justify-center items-center">
+              <select
+                className="select select-bordered w-full max-w-xs"
+                value={data.option}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    option: e.target.value,
+                  })
+                }>
+                <option>Choose</option>
+                <option value="Get Together">Get Togethers</option>
+                <option value="Weddings">Weddings</option>
+                <option value="Birthday">Birthday Parties</option>
+                <option value="Live Conserts">Live Conserts</option>
+                <option value="djs">Dj</option>
+              </select>
+            </div>
+            <div className="relative z-0 w-full mb-5 group flex justify-center items-center">
+              <select
+                className="select select-bordered w-full max-w-xs"
+                value={data.availability}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    availability: e.target.value,
+                  })
+                }>
+                <option selected>available</option>
+                <option value="Available">Available</option>
+                <option value="Busy">Busy</option>
+              </select>
             </div>
             <div className="flex items-center justify-between">
               <button

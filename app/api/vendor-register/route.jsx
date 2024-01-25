@@ -4,10 +4,30 @@ import prisma from "../../libs/prismadb";
 
 export async function POST(request) {
   const body = await request.json();
-  const { name, email, password, address, mobile, nicNumber } = body;
+  const {
+    name,
+    email,
+    password,
+    address,
+    mobile,
+    nicNumber,
+    description,
+    option,
+    availability,
+  } = body;
   console.log(body);
 
-  if (!name || !email || !password || !address || !mobile || !nicNumber) {
+  if (
+    !name ||
+    !email ||
+    !password ||
+    !address ||
+    !mobile ||
+    !nicNumber ||
+    !description ||
+    !option ||
+    !availability
+  ) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
 
@@ -31,6 +51,9 @@ export async function POST(request) {
       address,
       mobile,
       nicNumber,
+      description,
+      option,
+      availability,
     },
   });
 
