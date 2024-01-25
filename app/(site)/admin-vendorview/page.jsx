@@ -61,19 +61,6 @@ export default function AdminVendorView({ params }) {
     handleSearch(query);
   };
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const response = await fetch(`/api/vendors-all-get/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     toast.success("Event Deleted Successfully");
-  //     window.location.reload();
-  //     fetchData();
-  //   } catch (error) {
-  //     console.error("Unexpected error during delete:", error);
-  //   }
-  // };
-
   return (
     <div>
       {loading ? (
@@ -91,7 +78,7 @@ export default function AdminVendorView({ params }) {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-6 h-6 "
                 onClick={() => {
                   setOpen(true);
                 }}>
@@ -119,10 +106,12 @@ export default function AdminVendorView({ params }) {
                       />
                     </div>
 
-                    <div className="p-2">
-                      <h1 className="text-2xl font-semibold">{vendor.name}</h1>
-                      <div>
-                        <h1 className="text-md ">{vendor.name}</h1>
+                    <div className="p-2 flex items-start justify-start flex-col gap-1">
+                      <p className="text-2xl font-semibold">{vendor.name}</p>
+                      <p className="text-md ">{vendor.email}</p>
+                      <p className="text-md font-semibold">{vendor.option}</p>
+                      <div className="w-[100px] p-1 bg-green-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
+                        {vendor.availability}
                       </div>
                     </div>
 
@@ -216,13 +205,17 @@ export default function AdminVendorView({ params }) {
                           />
                         </div>
 
-                        <p className="text-2xl font-semibold">
-                          {vendor.option}
-                        </p>
-                        <div className="text-md">
-                          <p>{vendor.email}</p>
-                          <p>{vendor.address}</p>
-                          <p>{vendor.mobile}</p>
+                        <div className="p-2 flex items-start justify-start flex-col gap-1">
+                          <p className="text-2xl font-semibold">
+                            {vendor.name}
+                          </p>
+                          <p className="text-md ">{vendor.email}</p>
+                          <p className="text-md font-semibold">
+                            {vendor.option}
+                          </p>
+                          <div className="w-[100px] p-1 bg-green-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
+                            {vendor.availability}
+                          </div>
                         </div>
                         <Link
                           href={`/admin-vendorview/${vendor.id}`}
