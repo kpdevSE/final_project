@@ -16,7 +16,7 @@ export default function Registetr() {
     nicNumber: "",
     description: "",
     option: "",
-    availability: "",
+    status: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -55,7 +55,7 @@ export default function Registetr() {
       ) : (
         <div className="w-full  flex justify-center items-center h-screen">
           <form
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className=" rounded px-8 pt-6 pb-8 mb-4 w-[55%]"
             onSubmit={registerUser}>
             <div className="mb-4">
               <label
@@ -165,7 +165,7 @@ export default function Registetr() {
                 Password
               </label>
               <input
-                className="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 placeholder="******************"
@@ -217,20 +217,27 @@ export default function Registetr() {
               </select>
             </div>
             <div className="relative z-0 w-full mb-5 group flex justify-center items-center">
-              <select
-                className="select select-bordered w-full max-w-xs"
-                value={data.availability}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    availability: e.target.value,
-                  })
-                }>
-                <option selected>available</option>
-                <option value="Available">Available</option>
-                <option value="Busy">Busy</option>
-              </select>
+              <label>
+                Status:
+                <select
+                  className="select select-bordered w-full max-w-xs"
+                  value={data.status}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      status: e.target.value,
+                    })
+                  }>
+                  <option value="" defaultValue>
+                    Choose
+                  </option>
+                  <option value="AVAILABLE">Available</option>
+                  <option value="BUSY">Busy</option>
+                  <option value="NOT_WORKING">Not Working</option>
+                </select>
+              </label>
             </div>
+
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

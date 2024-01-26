@@ -13,7 +13,7 @@ export async function POST(request) {
     nicNumber,
     description,
     option,
-    availability,
+    status,
   } = body;
   console.log(body);
 
@@ -26,7 +26,7 @@ export async function POST(request) {
     !nicNumber ||
     !description ||
     !option ||
-    !availability
+    !status
   ) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
@@ -53,7 +53,7 @@ export async function POST(request) {
       nicNumber,
       description,
       option,
-      availability,
+      status,
     },
   });
 

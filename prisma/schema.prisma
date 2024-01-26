@@ -71,7 +71,7 @@ model Vendor {
   mobile        String?
   description   String?
   option        String?
-  availability  String?
+  status        String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      VendorAccount[]

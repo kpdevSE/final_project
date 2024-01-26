@@ -1,17 +1,15 @@
 "use client";
-import AdminNavigationPanel from "@/app/components/admin-navigation";
 import LoadingScreen from "@/app/components/loading.component";
 import { Modal } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 // Images
-import toast from "react-hot-toast";
 import logo from "../../../public/logo/logo.png";
-import profile from "../../../public/profile/profile.png";
 
-export default function AdminVendorView({ params }) {
+export default function AdminEvents({ params }) {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -20,17 +18,14 @@ export default function AdminVendorView({ params }) {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/vendors-all-get");
+      const response = await fetch("/api/vendors-events-all");
+
       if (response.ok) {
         const result = await response.json();
-        console.log(result);
-        if (result && result.vendors) {
-          setData(result.vendors);
-        } else {
-          console.error("Unexpected response format:", result);
-        }
+        setData(result.events);
+        console.log(result.events);
       } else {
-        console.error("Error fetching data:", response.statusText);
+        toast.error("Error fetching events");
       }
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -49,8 +44,8 @@ export default function AdminVendorView({ params }) {
   const [filteredItems, setFilteredItems] = useState(data);
 
   const handleSearch = (query) => {
-    const filtered = data.filter((vendor) =>
-      vendor.name.toLowerCase().includes(query.toLowerCase())
+    const filtered = data.filter((event) =>
+      event.option.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredItems(filtered);
   };
@@ -61,6 +56,19 @@ export default function AdminVendorView({ params }) {
     handleSearch(query);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/get-all-events/${id}`, {
+        method: "DELETE",
+      });
+      toast.success("Event Deleted Successfully");
+      window.location.reload();
+      fetchData();
+    } catch (error) {
+      console.error("Unexpected error during delete:", error);
+    }
+  };
+
   return (
     <div>
       {loading ? (
@@ -68,7 +76,6 @@ export default function AdminVendorView({ params }) {
       ) : (
         <div>
           <div className="w-[85%] h-full mx-auto relative top-16 ">
-            <AdminNavigationPanel />
             <div className="flex items-center justify-between w-[95%] mx-auto">
               <Image src={logo} />
               <svg
@@ -78,7 +85,7 @@ export default function AdminVendorView({ params }) {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6 "
+                className="w-6 h-6"
                 onClick={() => {
                   setOpen(true);
                 }}>
@@ -91,71 +98,60 @@ export default function AdminVendorView({ params }) {
             </div>
 
             <div className="grid place-items-center grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-8 mt-10">
-              {data.map((vendor) => {
-                return (
-                  <div
-                    key={vendor.id}
-                    className="flex flex-col gap-2 bg-blue-100 rounded-lg shadow-lg shadow-blue-200 w-[300px]">
-                    <div className="w-full h-[300px]">
-                      <Image
-                        src={profile}
-                        width={300}
-                        height={200}
-                        alt="vendor"
-                        className="w-full rounded-lg h-full p-1"
-                      />
-                    </div>
+              {data.map((event) => (
+                <div
+                  key={event.id}
+                  className="flex flex-col gap-2 bg-red-100 rounded-lg shadow-lg shadow-red-200 w-[300px]">
+                  <div className="w-full h-[200px]">
+                    <Image
+                      src={event.imageUrl}
+                      width={300}
+                      height={100}
+                      alt=""
+                      className="w-full rounded-lg h-full"
+                    />
+                  </div>
 
-                    <div className="p-2 flex items-start justify-start flex-col gap-1">
-                      <p className="text-2xl font-semibold">{vendor.name}</p>
-                      <p className="text-md ">{vendor.email}</p>
-                      <p className="text-md font-semibold">{vendor.option}</p>
-                      <div className="p-1">
-                        {vendor.status === "AVAILABLE" ? (
-                          <div className="w-[100px] p-1 bg-green-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                            <p>Available</p>
-                          </div>
-                        ) : null}
-                        {vendor.status === "BUSY" ? (
-                          <div className="w-[100px] p-1 bg-yellow-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                            <p>Busy</p>
-                          </div>
-                        ) : null}
-                        {vendor.status === "NOT_WORKING" ? (
-                          <div className="w-[130px] p-1 bg-red-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                            <p>Unavailable</p>
-                          </div>
-                        ) : null}
-                      </div>
+                  <div className="p-2">
+                    <h1 className="text-2xl font-semibold">{event.option}</h1>
+                    <div className="w-full">
+                      <h1 className="text-3xl font-semibold">
+                        {event.comapany}
+                      </h1>
                     </div>
-
-                    <div className="flex items-center justify-between p-2 w-full">
-                      <Link
-                        href={`/admin-vendorview/${vendor.id}`}
-                        className="bg-black w-full h-[35px] flex items-center justify-center text-white rounded-lg">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-6 h-6">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                          />
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                          />
-                        </svg>
-                      </Link>
+                    <div>
+                      <h1 className="text-md ">{event.email}</h1>
+                      <h1 className="text-md ">{event.address}</h1>
+                      <h1 className="text-md ">{event.number}</h1>
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="flex items-start justify-between p-2">
+                    <Link
+                      href={`/vendor-events/${event.id}`}
+                      className="bg-black w-[50px] h-[35px] flex items-center justify-center text-white rounded-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
             <Modal
               centered
@@ -202,51 +198,34 @@ export default function AdminVendorView({ params }) {
               </div>
               <div>
                 <div className="grid place-items-center grid-cols-1 mt-9 lg:grid-cols-2 md:grid-cols-1 gap-3">
-                  {filteredItems.map((vendor) => (
+                  {filteredItems.map((event) => (
                     <div
-                      key={vendor.id}
+                      key={event.id}
                       className="w-[300px] flex flex-col gap-2">
                       <div
-                        key={vendor.id}
-                        className="w-[250px] flex flex-col gap-2">
+                        key={event.id}
+                        className="w-[300px] flex flex-col gap-2">
                         <div className="w-full h-[200px]">
                           <Image
-                            src={profile}
-                            width={250}
+                            src={event.imageUrl}
+                            width={300}
                             height={100}
-                            alt="vendor"
+                            alt=""
                             className="w-full rounded-lg h-full"
                           />
                         </div>
 
-                        <div className="p-2 flex items-start justify-start flex-col gap-1">
-                          <p className="text-2xl font-semibold">
-                            {vendor.name}
-                          </p>
-                          <p className="text-md ">{vendor.email}</p>
-                          <p className="text-md font-semibold">
-                            {vendor.option}
-                          </p>
-                          <div className="p-1">
-                            {vendor.status === "AVAILABLE" ? (
-                              <div className="w-[100px] p-1 bg-green-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                                <p>Available</p>
-                              </div>
-                            ) : null}
-                            {vendor.status === "BUSY" ? (
-                              <div className="w-[100px] p-1 bg-yellow-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                                <p>Busy</p>
-                              </div>
-                            ) : null}
-                            {vendor.status === "NOT_WORKING" ? (
-                              <div className="w-[130px] p-1 bg-red-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
-                                <p>Unavailable</p>
-                              </div>
-                            ) : null}
-                          </div>
+                        <p className="text-2xl font-semibold">{event.option}</p>
+                        <p className="text-3xl font-semibold">
+                          {event.comapany}
+                        </p>
+                        <div className="text-md">
+                          <p>{event.email}</p>
+                          <p>{event.address}</p>
+                          <p>{event.number}</p>
                         </div>
                         <Link
-                          href={`/admin-vendorview/${vendor.id}`}
+                          href={`/birthday/${event.id}`}
                           className="bg-black w-[50px] h-[35px] flex items-center justify-center text-white rounded-lg">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

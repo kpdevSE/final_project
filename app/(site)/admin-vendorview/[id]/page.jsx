@@ -66,6 +66,23 @@ export default async function SingleEvent({ params }) {
                 className="mask mask-star-2 bg-orange-400"
               />
             </div>
+            <div className="p-1">
+              {vendor.status === "AVAILABLE" ? (
+                <div className="w-[100px] p-1 bg-green-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
+                  <p>Available</p>
+                </div>
+              ) : null}
+              {vendor.status === "BUSY" ? (
+                <div className="w-[100px] p-1 bg-yellow-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
+                  <p>Busy</p>
+                </div>
+              ) : null}
+              {vendor.status === "NOT_WORKING" ? (
+                <div className="w-[130px] p-1 bg-red-400 rounded-[20px] flex items-center justify-center text-white font-semibold">
+                  <p>Unavailable</p>
+                </div>
+              ) : null}
+            </div>
             <div className="flex flex-col items-center justify-start lg:flex-row md:flex-row gap-10">
               <button className="w-[200px] h-[50px] bg-amber-400 shadow-lg shadow-amber-200 rounded-lg font-semibold text-white">
                 Update
