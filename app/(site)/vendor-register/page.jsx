@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingScreen from "@/app/components/loading.component";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -236,11 +237,11 @@ export default function Registetr() {
                 type="submit">
                 Sign In
               </button>
-              <a
+              <Link
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                href="#">
-                Forgot Password?
-              </a>
+                href={"/vendor-logins"}>
+                Already Have an Account
+              </Link>
             </div>
           </form>
         </div>
