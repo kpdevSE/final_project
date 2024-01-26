@@ -13,12 +13,21 @@ import logo from "../../public/logo/logo.png";
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession() || {};
+
+  console.log(status);
+  console.log(session);
+
   const navigationItems = [
     {
       id: 1,
       item: "Dashboard",
       itemLink: "/dashboard",
+    },
+    {
+      id: 2,
+      item: "Events",
+      itemLink: "/userview-dashboard",
     },
   ];
   return (

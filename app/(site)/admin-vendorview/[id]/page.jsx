@@ -38,11 +38,34 @@ export default async function SingleEvent({ params }) {
             <p>{vendor.mobile}</p>
             <p>{vendor.email}</p>
             <p>{vendor.number}</p>
-            {vendor.availability == "Available" ? (
-              <div className="bg-green w-[50px] h-[50px] rounded-lg"></div>
-            ) : (
-              <div className="bg-red w-[50px] h-[50px] rounded-lg"></div>
-            )}
+            <div className="rating">
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                checked
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+              />
+            </div>
             <div className="flex flex-col items-center justify-start lg:flex-row md:flex-row gap-10">
               <button className="w-[200px] h-[50px] bg-amber-400 shadow-lg shadow-amber-200 rounded-lg font-semibold text-white">
                 Update
