@@ -2,6 +2,7 @@ import Navigation from "@/app/components/navigation.component";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import RelatedBdays from "../../related-bdays/page";
 
 const prisma = new PrismaClient();
 
@@ -126,6 +127,7 @@ export default async function SingleEvent({ params }) {
             </butto>
           </div>
         </div>
+        <RelatedBdays />
 
         <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
           <Link

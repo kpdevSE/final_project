@@ -1,6 +1,5 @@
 "use client";
 
-import Navigation from "@/app/components/navigation.component";
 import { Modal } from "antd";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
@@ -10,9 +9,8 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 // Images
-import logo from "../../../public/logo/logo.png";
 
-export default function Conserts() {
+export default function RelatedBdays() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
@@ -22,7 +20,7 @@ export default function Conserts() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/conserts");
+      const response = await fetch("/api/bday");
 
       if (response.ok) {
         const result = await response.json();
@@ -68,10 +66,9 @@ export default function Conserts() {
 
   return (
     <div>
-      <Navigation />
-      <div className="w-[85%] h-full mx-auto relative top-44">
-        <div className="flex items-center justify-between w-[95%] mx-auto">
-          <Image src={logo} />
+      <div className="w-[95%] h-full mx-auto relative">
+        <div className="flex items-center justify-between w-[95%] mt-10">
+          <h1 className="text-2xl font-semibold">Related Events..</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -90,7 +87,6 @@ export default function Conserts() {
             />
           </svg>
         </div>
-
         <div className="grid place-items-center grid-cols-1 mt-9 lg:grid-cols-3 md:grid-cols-2 gap-3">
           {data.map((event) => (
             <div key={event.id} className="w-[300px] flex flex-col gap-2">
@@ -112,7 +108,7 @@ export default function Conserts() {
                 <p>{event.number}</p>
               </div>
               <Link
-                href={`/conserts/${event.id}`}
+                href={`/birthday/${event.id}`}
                 className="bg-black w-[50px] h-[35px] flex items-center justify-center text-white rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,14 +131,6 @@ export default function Conserts() {
               </Link>
             </div>
           ))}
-        </div>
-
-        <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
-          <Link
-            href={"/userview-dashboard"}
-            className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
-            Go Back
-          </Link>
         </div>
       </div>
 
@@ -182,7 +170,7 @@ export default function Conserts() {
                 type="search"
                 id="default-search"
                 className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
-                placeholder="Search Your Events Using Company Name............"
+                placeholder="Search Your Events Using Company Name......"
                 value={searchQuery}
                 onChange={handleChange}
                 required
@@ -213,7 +201,7 @@ export default function Conserts() {
                     <p>{event.number}</p>
                   </div>
                   <Link
-                    href={`/conserts/${event.id}`}
+                    href={`/birthday/${event.id}`}
                     className="bg-black w-[50px] h-[35px] flex items-center justify-center text-white rounded-lg">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

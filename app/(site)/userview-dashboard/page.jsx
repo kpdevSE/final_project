@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 // Images
 import Navigation from "@/app/components/navigation.component";
 import { useEffect, useState } from "react";
-import bdays from "../../../public/bday/bdays.png";
-import live from "../../../public/conserts/live.png";
-import djs from "../../../public/djs/djs.png";
-import get from "../../../public/gettogether/together.png";
-import weddingImage from "../../../public/wedding/wedding.png";
+import bdays from "../../../public/bday/bdayhome.jpg";
+import live from "../../../public/conserts/liveconsertshome.jpg";
+import djs from "../../../public/djs/djhome.jpg";
+import get from "../../../public/gettogether/gettogetherhome.jpg";
+import weddingImage from "../../../public/wedding/weddinghome.jpg";
 
 export default function UserDashboard() {
   const router = useRouter();
@@ -60,22 +60,24 @@ export default function UserDashboard() {
     securePage();
   }, []);
   return (
-    <div>
+    <div className="w-full h-full">
       <Navigation />
       <div className="w-[85%] h-full mx-auto relative top-44">
-        <div className="grid place-items-center grid-cols-1 lg:grid-cols-4 gap-8 mt-9 md:grid-cols-2 ">
+        <div className="flex items-center justify-center flex-col w-full h-full gap-3">
           {dummyData.map((e) => {
             return (
               <Link href={e.link}>
                 <div
-                  className="w-[200px] h-[250px]flex item-center justify-center flex-col rounded-lg shadow-lg shadow-slate-500"
+                  className="lg:w-[500px] h-[250px]flex item-center justify-center flex-col rounded-lg shadow-lg shadow-slate-500 w-full relative hover:bg-gradient-to-b hover:from-transparent hover:to-black"
                   key={e.id}>
                   <Image
                     src={e.image}
-                    className="w-[200px] h-[200px] "
+                    className="w-full h-[350px] rounded-lg object-cover "
                     alt=""
                   />
-                  <h1 className="text-center">{e.title}</h1>
+                  <h1 className="text-center absolute top-5 left-5 text-white text-2xl ">
+                    {e.title}
+                  </h1>
                 </div>
               </Link>
             );
