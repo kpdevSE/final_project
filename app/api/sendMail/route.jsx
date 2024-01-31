@@ -1,12 +1,11 @@
-import { useSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { data: session } = useSession;
   try {
     const { subject, message, to, from } = await request.json();
-    const transpoter = nodemailer.createTransport({
+
+    const transporter = nodemailer.createTransport({
       service: "gmail",
       secure: true,
       auth: {
@@ -15,14 +14,15 @@ export async function POST(request) {
       },
     });
 
-    const mailOption = {
+    const mailOptions = {
       from: from,
       to: to,
       subject: subject,
       html: `<h3>Hello ${to}</h3>
              <h1>${message}</h1>`,
     };
-    await transpoter.sendMail(mailOption);
+
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
       {
@@ -33,6 +33,6 @@ export async function POST(request) {
       }
     );
   } catch (error) {
-    NextResponse.json(error);
+    return NextResponse.error(error);
   }
 }
