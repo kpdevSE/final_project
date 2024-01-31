@@ -19,7 +19,7 @@ export async function POST(request) {
       to: to,
       subject: subject,
       html: `<h3>Hello ${to}</h3>
-             <h1>${message}</h1>`,
+             <p>${message}</p>`,
     };
 
     await transporter.sendMail(mailOptions);

@@ -1,3 +1,4 @@
+import ModalComponents from "@/app/components/modal.components";
 import Navigation from "@/app/components/navigation.component";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
@@ -108,23 +109,11 @@ export default async function SingleEvent({ params }) {
                 </svg>
                 <p>{eventz.number}</p>
               </div>
+              <p className="text-lg font-semibold mt-5">
+                Rs: {eventz.price}.00
+              </p>
             </div>
-            <butto className="bg-lime-400 w-[200px] h-[50px] flex items-center justify-center rounded-lg shadow-lg shadow-lime-200 gap-2 font-semibold mt-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 4.5v15m7.5-7.5h-15"
-                />
-              </svg>
-              Book Now
-            </butto>
+            <ModalComponents />
           </div>
         </div>
         <RelatedBdays />

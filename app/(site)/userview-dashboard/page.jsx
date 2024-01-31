@@ -63,7 +63,7 @@ export default function UserDashboard() {
     <div className="w-full h-full">
       <Navigation />
       <div className="w-[85%] h-full mx-auto relative top-44">
-        <div className="flex items-center justify-center flex-col w-full h-full gap-3">
+        <div className="grid grid-cols-1 place-items-center lg:grid-cols-2 w-full h-full gap-3">
           {dummyData.map((e) => {
             return (
               <Link href={e.link}>
