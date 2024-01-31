@@ -17,6 +17,7 @@ export async function POST(request, res) {
       option: option,
       comapany: comapany,
       description: description,
+      price: price,
     } = body;
     console.log(body);
 
@@ -31,6 +32,7 @@ export async function POST(request, res) {
         option,
         comapany,
         description,
+        price,
       },
     });
     if (!res.ok) {

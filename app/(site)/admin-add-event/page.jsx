@@ -15,6 +15,7 @@ export default function AdminAddEvent() {
   const [description, setDescription] = useState("");
   const [number, setNumber] = useState("");
   const [option, setOption] = useState("");
+  const [price, setprice] = useState("");
 
   // const [data, setData] = useState({
   //   firstName: firstName,
@@ -44,6 +45,7 @@ export default function AdminAddEvent() {
         option,
         number,
         description,
+        price,
       };
       const response = await fetch("/api/add-events", {
         method: "POST",
@@ -243,6 +245,29 @@ export default function AdminAddEvent() {
               htmlFor="floating_repeat_description"
               className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
               Description
+            </label>
+          </div>
+          <div className="relative z-0 lg:w-[30%] w-[100%] mb-5 group">
+            <input
+              type="text"
+              name="floating_price"
+              id="floating_price"
+              className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              value={price}
+              onChange={(e) => {
+                // setData({
+                //   ...data,
+                //   address: e.target.value,
+                // });
+                setprice(e.target.value);
+              }}
+              required
+            />
+            <label
+              htmlFor="floating_price"
+              className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Price
             </label>
           </div>
           <div className="relative z-0 w-full mb-5 group flex justify-center items-center">

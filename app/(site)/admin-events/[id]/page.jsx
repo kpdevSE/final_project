@@ -34,6 +34,7 @@ export default async function SingleEvent({ params }) {
             <p>{eventz.email}</p>
             <p>{eventz.firstName + " " + eventz.lastName}</p>
             <p>{eventz.number}</p>
+            <p className="text-lg font-semibold">Rs: {eventz.price}.00</p>
             <div className="flex flex-col items-center justify-start lg:flex-row md:flex-row gap-10">
               <button className="w-[200px] h-[50px] bg-amber-400 shadow-lg shadow-amber-200 rounded-lg font-semibold text-white">
                 Update
