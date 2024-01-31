@@ -3,7 +3,9 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
-    const { subject, message, to, from } = await request.json();
+    const { sellerEmail, userEmail, price } = await request.json();
+
+    console.log(sellerEmail, userEmail, price);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -15,11 +17,12 @@ export async function POST(request) {
     });
 
     const mailOptions = {
-      from: from,
-      to: to,
-      subject: subject,
-      html: `<h3>Hello ${to}</h3>
-             <p>I book your event planing system .. It is ${message}</p>`,
+      from: userEmail,
+      to: sellerEmail,
+      subject: "Congratulations!!",
+      html: `<h3>Hello ${sellerEmail}</h3>
+             <p>Your Event planing system was booked by ${userEmail} ..it cost is ${price}.. you can contact with him now..</p></br>
+             <p>See You ${sellerEmail}</p>`,
     };
 
     await transporter.sendMail(mailOptions);

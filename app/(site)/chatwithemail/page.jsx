@@ -9,7 +9,6 @@ export default function ChatWithEmail() {
   const [to, setTo] = useState();
   const [subject, setSubject] = useState();
   const [message, setMessage] = useState();
-  const [file, setFile] = useState();
 
   const onSubmitHandler = async () => {
     // e.preventDefault();
@@ -19,12 +18,15 @@ export default function ChatWithEmail() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ to, subject, message, from }),
-    });
-    if (response.ok) {
-      toast.success("Email Send Successfully");
-    } else {
-      toast.error("Something went wrong");
-    }
+    })
+      .then(() => {
+        if (response.ok) {
+          toast.success("Email Send Successfully");
+        }
+      })
+      .catch((error) => {
+        toast.error("Something went wrong ", error);
+      });
   };
   return (
     <div>

@@ -32,16 +32,33 @@ export default function ModalComponents() {
         },
         body: JSON.stringify(data),
       });
-
-      if (!response.ok) {
-        console.error("booking Failed:", response.status, response.statusText);
-        toast.error("Booking Failed");
+      if (response.ok) {
+        toast.success("Event Booking Successfully and send a Email to seller");
+        setTimeout(async () => {
+          const bookingEmail = await fetch("/api/bookingEmail", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userEmail: data.userEmail,
+              sellerEmail: data.sellerEmail,
+              price: data.price,
+            }),
+          });
+          if (bookingEmail.ok) {
+            toast.success("Email Send Successfully");
+            router.push("/userview-dashboard");
+          } else {
+            toast.error("Email not Sent.");
+          }
+        }, 2000);
       } else {
-        toast.success("Event Booking Successfully");
-        router.push("/userview-dashboard");
+        toast.error("Booking Failed");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      console.error("Email Sending Error:", error);
+      toast.error("Something went wrong with a email sending");
     }
   };
   return (
