@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Images
+import ButtonHover from "@/app/components/buttonhover";
 import Navigation from "@/app/components/navigation.component";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -32,19 +33,19 @@ export default function Dashboard() {
   }, []);
   return (
     <div>
+      <Navigation />
       {loading ? (
         <div>
           <LoadingScreen />
         </div>
       ) : (
-        <div>
-          <Navigation />
+        <div className="w-[85%] mx-auto">
           <div className="w-[85%] h-full mx-auto flex flex-col justify-center items-center relative top-44">
             <h1 className="text-[25px] text-center">Dashboard</h1>
             <p className="text-[50px] text-center">
               Hiii......... {session?.user?.name}
             </p>
-            <p className="text-[50px] text-center">
+            <p className="lg:text-[50px] text-center text-[20px]">
               Hiii......... {session?.user?.email}
             </p>
             <Link
@@ -55,6 +56,7 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+      <ButtonHover />
     </div>
   );
 }
