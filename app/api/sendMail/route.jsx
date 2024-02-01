@@ -22,6 +22,8 @@ export async function POST(request) {
              <p>${message}</p>`,
     };
 
+    console.log(mailOptions);
+
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
