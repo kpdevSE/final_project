@@ -1,5 +1,4 @@
 "use client";
-import AdminNavigationPanel from "@/app/components/admin-navigation";
 import LoadingScreen from "@/app/components/loading.component";
 import { Modal } from "antd";
 import Image from "next/image";
@@ -8,10 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 // Images
-import Footer from "@/app/components/footer";
-import logo from "../../../public/logo/logo.png";
 
-export default function AdminEvents({ params }) {
+export default function AdminRelatedEvents({ params }) {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -77,13 +74,9 @@ export default function AdminEvents({ params }) {
         <LoadingScreen />
       ) : (
         <div>
-          <div className="w-[85%] h-full mx-auto relative top-16 ">
-            <AdminNavigationPanel />
-            <h1 className="text-center font-semibold text-4xl">
-              All Eventz ..{" "}
-            </h1>
+          <div className="w-full h-full mx-auto mt-36">
             <div className="flex items-center justify-between w-[95%] mx-auto">
-              <Image src={logo} />
+              <p className="font-semibold text-2xl">Related Events....</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -280,7 +273,6 @@ export default function AdminEvents({ params }) {
           </div>
         </div>
       )}
-      <Footer />
     </div>
   );
 }
