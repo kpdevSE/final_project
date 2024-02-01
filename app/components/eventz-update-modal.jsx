@@ -1,12 +1,10 @@
 "use client";
-import AdminNavigationPanel from "@/app/components/admin-navigation";
-import Footer from "@/app/components/footer";
+
 import { UploadDropzone } from "@uploadthing/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function AdminAddEvent() {
+export default function EventsUpdateModalButton({ id }) {
   const [imageUrl, setImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setfirstName] = useState("");
@@ -17,24 +15,12 @@ export default function AdminAddEvent() {
   const [number, setNumber] = useState("");
   const [option, setOption] = useState("");
   const [price, setprice] = useState("");
-
-  // const [data, setData] = useState({
-  //   firstName: firstName,
-  //   lastName: "",
-  //   imageUrl: imageUrl,
-  //   email: "",
-  //   comapany: "",
-  //   address: "",
-  //   option: "",
-  //   number: "",
-  //   description: "",
-  // });
-
-  const router = useRouter();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!id) {
+      console.log("id is not defined");
+    }
     try {
       const body = {
         firstName,
@@ -48,8 +34,8 @@ export default function AdminAddEvent() {
         description,
         price,
       };
-      const response = await fetch("/api/add-events", {
-        method: "POST",
+      const response = await fetch(`/api/get-all-events/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -59,8 +45,8 @@ export default function AdminAddEvent() {
       if (!response.ok) {
         toast.error("Event creation failed. Please try again.");
       } else {
-        toast.success("Event added successfully");
-        router.push("/admin-events");
+        toast.success("Event updated successfully");
+        window.location.reload(`/admin-events/${id}`);
       }
     } catch {
       toast.error("something went wrong");
@@ -68,15 +54,16 @@ export default function AdminAddEvent() {
   };
   return (
     <div>
-      <div className="w-[85%] mx-auto h-full">
-        <AdminNavigationPanel />
-        <h3 className="lg:text-3xl text-xl font-semibold mt-16 text-center">
-          Eventz Adding Page
-        </h3>
-        <div className="w-full h-full flex items-center justify-center">
-          <form
-            className=" mx-auto w-full lg:w-[85%] lg:mt-16 mt-6 md:w-[70%] "
-            onSubmit={handleSubmit}>
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      <button
+        className="btn w-[200px] h-[50px] bg-amber-400 shadow-lg shadow-amber-200 rounded-lg font-semibold text-white"
+        onClick={() => document.getElementById("my_modal_4").showModal()}>
+        Update
+      </button>
+      <dialog id="my_modal_4" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
+          <p>Update The Event Feilds</p>
+          <form className=" mx-auto w-full" onSubmit={handleSubmit}>
             <UploadDropzone
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
@@ -296,9 +283,14 @@ export default function AdminAddEvent() {
               Submit
             </button>
           </form>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <Footer />
+      </dialog>
     </div>
   );
 }
