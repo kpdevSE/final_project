@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 // Images
+import Footer from "@/app/components/footer";
 import logo from "../../../public/logo/logo.png";
 
 export default function Weddiing() {
@@ -67,7 +68,7 @@ export default function Weddiing() {
   };
 
   return (
-    <div>
+    <div className="h-full">
       <Navigation />
       <div className="w-[85%] h-full mx-auto relative top-44">
         <div className="flex items-center justify-between w-[95%] mx-auto">
@@ -136,14 +137,10 @@ export default function Weddiing() {
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
-          <Link
-            href={"/userview-dashboard"}
-            className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
-            Go Back
-          </Link>
-        </div>
+      <div className="relative top-52">
+        <Footer />
       </div>
 
       {/* Testing */}

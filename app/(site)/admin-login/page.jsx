@@ -1,6 +1,7 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -89,6 +90,11 @@ export default function AdminLogin() {
                     Login
                   </button>
                 </div>
+                <Link href={"/"}>
+                  <div className="w-full bg-green-400 rounded-xl p-3 flex items-center justify-center mt-5">
+                    <button className="text-white text-xl">Home</button>
+                  </div>
+                </Link>
 
                 {error && (
                   <p className="bg-red-400 p-2 flex items-center justify-center text-white rounded-lg mt-5">

@@ -94,6 +94,35 @@ export default function Navigation() {
                 />
               </svg>
             </li>
+            <li>
+              <div className="dropdown hidden lg:block">
+                <div tabIndex={0} role="button" className="btn m-1 bg-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
+                  <li className="flex flex-col">
+                    <p>Hii ..!! </p>
+                    <strong className="font-semibold">
+                      {session?.user?.name}
+                    </strong>
+                  </li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
         {/* End of Navlist Section */}
@@ -150,7 +179,16 @@ export default function Navigation() {
                           <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
-                      <div className="relative mt-10 flex-1 px-4 sm:px-6 ">
+                      <div className="mt-8 px-4 sm:px-6">
+                        <p className="text-lg">
+                          Welcome{" "}
+                          <strong className="text-sky-500 font-semibold">
+                            {session?.user?.name}
+                          </strong>{" "}
+                          !!!
+                        </p>
+                      </div>
+                      <div className="relative mt-5 flex-1 px-4 sm:px-6 ">
                         <Link href={"/dashboard"}>
                           <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
                             <MdDashboard className="w-[30px] h-[30px]" />
