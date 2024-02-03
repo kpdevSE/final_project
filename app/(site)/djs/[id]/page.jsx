@@ -16,7 +16,7 @@ export default async function SingleEvent({ params }) {
 
   console.log(eventz);
   return (
-    <div>
+    <div className="h-full">
       <Navigation />
       <div className="w-[85%] mx-auto h-[80vh] relative top-44">
         <div className="flex justify-between items-start w-full md:flex-col flex-col lg:flex-row gap-8">

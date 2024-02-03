@@ -5,6 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useState } from "react";
+import { FaBookmark } from "react-icons/fa";
 
 // Images
 import logoImage from "../../public/logo/logo.png";
@@ -113,6 +114,12 @@ export default function AdminNavigationPanel() {
                               <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
                                 <MdOutlinePreview className="w-[30px] h-[30px]" />
                                 <li className="text-lg">Vendors View</li>
+                              </div>
+                            </Link>
+                            <Link href={"/admin-all-bookings"}>
+                              <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
+                                <FaBookmark className="w-[30px] h-[30px]" />
+                                <li className="text-lg">Bookings</li>
                               </div>
                             </Link>
                             <Link href={"/admin-login"} className="text-lg">

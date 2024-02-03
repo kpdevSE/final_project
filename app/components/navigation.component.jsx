@@ -96,7 +96,7 @@ export default function Navigation() {
             </li>
             <li>
               <div className="dropdown hidden lg:block">
-                <div tabIndex={0} role="button" className="btn m-1">
+                <div tabIndex={0} role="button" className="btn m-1 bg-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -113,7 +113,7 @@ export default function Navigation() {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
                   <li className="flex flex-col">
                     <p>Hii ..!! </p>
                     <strong className="font-semibold">
