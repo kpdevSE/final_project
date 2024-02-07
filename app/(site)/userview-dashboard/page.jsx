@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 // Images
 import Blogs from "@/app/components/blogs";
+import Carousle from "@/app/components/carousel";
 import Footer from "@/app/components/footer";
 import Navigation from "@/app/components/navigation.component";
 import { useEffect, useState } from "react";
@@ -65,6 +66,10 @@ export default function UserDashboard() {
   return (
     <div className="w-full h-full">
       <Navigation />
+      <div className="mt-36">
+        <Carousle />
+      </div>
+
       <div className="w-[85%] h-full mx-auto relative top-36">
         <div className="grid grid-cols-1 place-items-center lg:grid-cols-3 w-full h-full gap-3 md:grid-cols-2">
           {dummyData.map((e) => {
