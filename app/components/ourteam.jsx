@@ -1,3 +1,4 @@
+"use client";
 import Aos from "aos";
 import Image from "next/image";
 import { useEffect } from "react";
