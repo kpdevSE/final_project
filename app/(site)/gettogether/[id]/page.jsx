@@ -1,3 +1,4 @@
+import Footer from "@/app/components/footer";
 import ModalComponents from "@/app/components/modal.components";
 import Navigation from "@/app/components/navigation.component";
 import { PrismaClient } from "@prisma/client";
@@ -116,16 +117,16 @@ export default async function SingleEvent({ params }) {
             <ModalComponents />
           </div>
         </div>
-        <Relatedgettogether />
-
-        <div className="w-36 h-7 mx-auto items-center flex justify-center mt-10">
-          <Link
-            href={"/gettogether"}
-            className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
-            Go Back
-          </Link>
-        </div>
       </div>
+      <Relatedgettogether />
+      <div className="w-36 h-7 mx-auto items-center flex justify-center mt-16">
+        <Link
+          href={"/gettogether"}
+          className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
+          Go Back
+        </Link>
+      </div>
+      <Footer />
     </div>
   );
 }

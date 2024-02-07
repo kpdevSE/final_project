@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,9 +70,12 @@ export default function UserDashboard() {
           {dummyData.map((e) => {
             return (
               <Link href={e.link}>
-                <div
+                <motion.div
                   className="lg:w-[500px] h-[250px]flex item-center justify-center flex-col rounded-lg shadow-lg shadow-slate-500 w-full relative hover:bg-gradient-to-b hover:from-transparent hover:to-black"
-                  key={e.id}>
+                  key={e.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}>
                   <Image
                     src={e.image}
                     className="w-full h-[350px] rounded-lg object-cover "
@@ -80,7 +84,7 @@ export default function UserDashboard() {
                   <h1 className="text-center absolute top-5 left-5 text-white text-2xl ">
                     {e.title}
                   </h1>
-                </div>
+                </motion.div>
               </Link>
             );
           })}

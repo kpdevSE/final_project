@@ -66,7 +66,7 @@ export default function RelatedBdays() {
 
   return (
     <div>
-      <div className="w-[95%] h-full mx-auto relative">
+      <div className="w-[85%] h-full mx-auto relative">
         <div className="flex items-center justify-between w-[95%] mt-10">
           <h1 className="text-2xl font-semibold">Related Events..</h1>
           <svg

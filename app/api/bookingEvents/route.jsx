@@ -8,9 +8,10 @@ export async function POST(request) {
     sellerName,
     userEmail,
     sellerEmail,
-    bookDate,
+    mobile,
     price,
     catergory,
+    bookingDate,
   } = body;
   console.log(body);
 
@@ -21,7 +22,8 @@ export async function POST(request) {
     !catergory,
     !userEmail,
     !sellerEmail,
-    !bookDate)
+    !mobile,
+    !bookingDate)
   ) {
     return new NextResponse("Missing Feilds", { status: 400 });
   }
@@ -32,9 +34,10 @@ export async function POST(request) {
       sellerName,
       userEmail,
       sellerEmail,
-      bookDate,
+      mobile,
       catergory,
       price,
+      bookingDate,
     },
   });
 

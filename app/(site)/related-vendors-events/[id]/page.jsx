@@ -2,7 +2,6 @@ import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
-import RelatedVendorevents from "../../related-vendors-events/page";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +14,7 @@ export default async function SingleEvent({ params }) {
 
   return (
     <div>
-      <div className="w-[85%] mx-auto h-full">
+      <div className="w-[85%] mx-auto h-screen">
         <VendorNavigationPanel />
         <div className="w-[100%] lg:w-[100%] mx-auto h-full  md:flex-col lg:flex md:w-[75%] relative top-24">
           <p className="text-2xl">
@@ -46,8 +45,6 @@ export default async function SingleEvent({ params }) {
             </div>
           </div>
         </div>
-        <p className="text-2xl font-semibold mt-36">Related Events ...</p>
-        <RelatedVendorevents />
       </div>
       <Footer />
     </div>

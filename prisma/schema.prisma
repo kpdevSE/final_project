@@ -133,7 +133,8 @@ model Booking {
   sellerEmail   String
   userEmail     String
   price         String?
-  bookDate      String
+  mobile        String?
+  bookingDate   String?
   catergory     String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

@@ -1,11 +1,22 @@
+"use client";
+import "aos/dist/aos.css";
 import Link from "next/link";
 import logo from "../../public/logo/Asset 1@300x.png";
 
+import Aos from "aos";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Footer() {
+  useEffect(() => {
+    Aos.init({
+      offset: 200,
+      duration: 600,
+      delay: 100,
+    });
+  }, []);
   return (
-    <div className="mt-24  bg-gray-900">
+    <div className="mt-24  bg-gray-900 ">
       <footer className="bg-gray-900 dark:bg-gray-900 lg:w-[85%] w-full mx-auto ">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">

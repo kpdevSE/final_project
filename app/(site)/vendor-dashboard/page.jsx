@@ -1,6 +1,6 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
-import Chart from "chart.js/auto";
+import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import { useEffect, useRef, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -21,33 +21,6 @@ export default function VendorDahsboard() {
     setTimeout(() => {
       setLoading(false);
     }, 1500);
-
-    if (chartRef.current) {
-      const ctx = chartRef.current.getContext("2d");
-
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Data",
-              data: data,
-              backgroundColor: "rgba(75, 192, 192, 0.2)",
-              borderColor: "rgba(75, 192, 192, 1)",
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    }
   }, [data, labels]);
   return (
     <div>
@@ -55,13 +28,14 @@ export default function VendorDahsboard() {
         <LoadingScreen />
       ) : (
         <div className="w-[85%] h-full mx-auto">
+          <VendorNavigationPanel />
           <h1>Vendor Dashboard</h1>
           <div className="w-full flex flex-col lg:flex-row items-center justify-between h-[40vh]">
             <div>
               <Calendar onChange={onChange} value={date} />
             </div>
             <div className="w-[100%] h-full md:w-full lg:w-[65%] flex items-center justify-center">
-              <canvas ref={chartRef} className="canva" id="Chart" />
+              <h1>Kanishka</h1>
             </div>
           </div>
         </div>
