@@ -1,5 +1,6 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
+import { motion } from "framer-motion";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -53,7 +54,13 @@ export default function Dashboard() {
       ) : (
         <div className="w-full">
           <UserHeroSection />
-          <h1 className="text-5xl font-semibold text-center">Our Team</h1>
+          <motion.h1
+            className="text-5xl font-semibold text-center"
+            initial={{ y: 500 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1 }}>
+            Our Team
+          </motion.h1>
           <Example />
 
           <div className="w-[85%] mx-auto">

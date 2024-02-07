@@ -1,4 +1,6 @@
+import Aos from "aos";
 import Image from "next/image";
+import { useEffect } from "react";
 import kpdev from "../../public/ourteam/kpdev (2).jpg";
 
 const people = [
@@ -42,6 +44,11 @@ const people = [
 ];
 
 export default function Example() {
+  useEffect(() => {
+    Aos.init({
+      duration: 2000,
+    });
+  }, []);
   return (
     <div className="bg-white py-24 sm:py-32 w-[85%] mx-auto">
       <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
