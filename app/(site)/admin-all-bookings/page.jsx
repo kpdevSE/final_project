@@ -10,6 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function GetAllBooking() {
   const [loading, setLoading] = useState(true);
@@ -83,6 +84,10 @@ export default function GetAllBooking() {
                       &nbsp;
                     </TableCell>
                     <TableCell align="right">
+                      <p className="text-xl font-semibold">Mobile</p>
+                      &nbsp;
+                    </TableCell>
+                    <TableCell align="right">
                       <p className="text-xl font-semibold">Booking Data</p>
                       &nbsp;
                     </TableCell>
@@ -103,7 +108,8 @@ export default function GetAllBooking() {
                       <TableCell align="right">{row.sellerEmail}</TableCell>
                       <TableCell align="right">{row.catergory}</TableCell>
                       <TableCell align="right">Rs . {row.price}</TableCell>
-                      <TableCell align="right">{row.createdAt}</TableCell>
+                      <TableCell align="right">{row.mobile}</TableCell>
+                      <TableCell align="right">{row.bookingDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

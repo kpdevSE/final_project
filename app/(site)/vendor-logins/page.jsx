@@ -77,6 +77,7 @@ export default function VendorLogin() {
       <div className="">
         <Link href={"/vendor-register"}>Register Here</Link>
       </div>
+      <Link href={"/"}>Home</Link>
     </div>
   );
 }

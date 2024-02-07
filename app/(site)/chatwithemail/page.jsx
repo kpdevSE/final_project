@@ -12,8 +12,6 @@ export default function ChatWithEmail() {
   const [loading, setloading] = useState(true);
 
   const onSubmitHandler = async () => {
-    // e.preventDefault();
-
     const response = await fetch("api/sendMail", {
       method: "POST",
       headers: {
@@ -33,11 +31,11 @@ export default function ChatWithEmail() {
   };
   return (
     <div>
-      <Navigation />
       <VendorsEmail />
-      <div className="w-[85%] mx-auto mt-16 relative top-28">
+      <Navigation />
+      <div className="w-[85%] mx-auto mt-16 relative top-28 h-">
         <form
-          className="w-[100%] lg:w-[65%] mx-auto flex items-center justify-center flex-col"
+          className="w-[100%] flex items-center justify-center flex-col mt-16"
           onSubmit={onSubmitHandler}>
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -97,26 +95,6 @@ export default function ChatWithEmail() {
               Subject
             </label>
           </div>
-          {/* <div classNAme="relative z-0 w-full mb-5 group">
-            <textarea
-              type="textarea"
-              name="floating_textare"
-              id="floating_textare"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              cols={20}
-              rows={10}
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-              required></textarea>
-            <label
-              for="floating_textare"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Your Message
-            </label>
-          </div> */}
 
           <div className="relative z-0 w-full mb-5 group">
             <textarea
@@ -124,12 +102,13 @@ export default function ChatWithEmail() {
               id=""
               cols="150"
               rows="10"
-              className="w-full"
+              className="w-full border border-b-2 border-black"
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              required></textarea>
+              required
+              placeholder="Description of Your Message"></textarea>
           </div>
 
           <button

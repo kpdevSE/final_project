@@ -44,7 +44,7 @@ export default function Registetr() {
       toast.error("Registration Failed");
     } else {
       toast.success("User Registration Successfully");
-      router.push("/login");
+      router.push("/vendor-logins");
     }
   };
 

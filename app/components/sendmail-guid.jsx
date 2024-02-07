@@ -1,16 +1,15 @@
+"use client";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
-import { useSession } from "next-auth/react";
 import PropTypes from "prop-types";
 import * as React from "react";
 
 import Image from "next/image";
 import logo from "../../public/logo/logo.png";
 
-export default function GuidComponent() {
-  const { data: session } = useSession();
+export default function SendMailGuidComponent() {
   function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -81,13 +80,7 @@ export default function GuidComponent() {
             </Box>
             <CustomTabPanel value={value} index={0}>
               <div className="flex flex-col items-start justify-start gap-3">
-                <Image src={logo} alt="" />
-                <p>
-                  Welcome to{" "}
-                  <strong className="text-xl font-semibold">
-                    {session?.user?.name} !!!
-                  </strong>
-                </p>
+                <Image src={logo} />
                 <p>
                   First of all, you can visit your dashboard. On the dashboard,
                   you will find your name, email, and other relevant
@@ -102,48 +95,38 @@ export default function GuidComponent() {
                     <li>* etc</li>
                   </ul>
                 </div>
-                <div>
-                  <p className="mt-5">
-                    Additionally, you will notice a plus icon on the bottom
-                    left.
-                  </p>
-                  <p className="mt-5">
-                    If you want to find a specific event, click on the 'Events'
-                    button. This will take you to the events page, where you can
-                    explore various events. Each event is displayed
-                    individually, and you can click on them to get more details.
-                    If you wish to book an event, simply click the 'Book'
-                    button. The respective seller will receive an email
-                    notification.
-                  </p>
-                  <p>
-                    You can also search for events in five different categories.
-                    For example, if you navigate to the 'Wedding' category, you
-                    will find only wedding events.
-                  </p>
-                  <p>
-                    Now, let's go back to the dashboard by clicking the plus
-                    icon button. This will lead you to a form page where you can
-                    find the 'Visit Vendor Emails' button. Clicking this button
-                    allows you to contact sellers directly. You can find
-                    sellers' emails on this page, but this is entirely optional.
-                  </p>
-                  <p>
-                    Thank you! Have a great experience! More tips are coming
-                    soon."
-                  </p>
-                </div>
+                <p className="mt-5">
+                  Additionally, you will notice a plus icon on the bottom left.
+                </p>
+                <p className="mt-5">
+                  If you want to find a specific event, click on the 'Events'
+                  button. This will take you to the events page, where you can
+                  explore various events. Each event is displayed individually,
+                  and you can click on them to get more details. If you wish to
+                  book an event, simply click the 'Book' button. The respective
+                  seller will receive an email notification.
+                </p>
+                <p>
+                  You can also search for events in five different categories.
+                  For example, if you navigate to the 'Wedding' category, you
+                  will find only wedding events.
+                </p>
+                <p>
+                  Now, let's go back to the dashboard by clicking the plus icon
+                  button. This will lead you to a form page where you can find
+                  the 'Visit Vendor Emails' button. Clicking this button allows
+                  you to contact sellers directly. You can find sellers' emails
+                  on this page, but this is entirely optional.
+                </p>
+                <p>
+                  Thank you! Have a great experience! More tips are coming
+                  soon."
+                </p>
               </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
               <div className="flex flex-col items-start justify-start gap-3">
-                <Image src={logo} />
-                <p>
-                  ආයුබෝවන්{" "}
-                  <strong className="text-xl font-semibold">
-                    {session?.user?.name} !!!
-                  </strong>
-                </p>
+                <Image src={logo} alt="" />
                 <p>
                   පළමුව, ඔබට ඔබගේ ඩැෂ්බෝර්ඩ් වෙත පිවිසෙනවා. ඩැෂ්බෝර්ඩ් එකේ, ඔබගේ
                   නම, විද්‍යුත් තැපෑල සහ වෙදත් තොරතුරුකරු සොයාගත හැකිය. මෙමින්
@@ -182,12 +165,6 @@ export default function GuidComponent() {
             <CustomTabPanel value={value} index={2}>
               <div className="flex flex-col items-start justify-start gap-3">
                 <Image src={logo} />
-                <p>
-                  வரவேற்கிறோம்{" "}
-                  <strong className="text-xl font-semibold">
-                    {session?.user?.name} !!!
-                  </strong>
-                </p>
                 <p className="text-center">Comming Soon..</p>
               </div>
             </CustomTabPanel>
