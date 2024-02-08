@@ -9,13 +9,15 @@ import events from "../public/gettogether/get together.png";
 import Carousle from "./components/carousel";
 import Footer from "./components/footer";
 import HomeNavigation from "./components/home-navigation";
+import Example from "./components/ourteam";
+import Sponsers from "./components/sponsers";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
     <div className="h-full">
       <HomeNavigation />
-      <div className="bg-gradient-to-l from-[#f1d8f4] relative top-28 h-full">
+      <div className=" relative top-28 h-full">
         <Carousle />
 
         {/* Our journey Section */}
@@ -68,6 +70,9 @@ export default async function Home() {
               className="w-[500px] md:w-[600px] lg:w-[800px] rounded-3xl"
             />
           </div>
+        </div>
+        <div className="mt-16" data-aos="fade-down">
+          <Example />
         </div>
         {/* Section */}
         <div className="w-[85%] mx-auto mt-28 flex flex-col justify-between lg:flex-row ">
@@ -155,6 +160,7 @@ export default async function Home() {
           </div>
         </div>
         {/* End OF Our Journey Section */}
+        <Sponsers />
         <div className="mt-24">
           <Footer />
         </div>

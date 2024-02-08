@@ -2,6 +2,10 @@ import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
+import { CgProfile } from "react-icons/cg";
+import { FaMobileAlt } from "react-icons/fa";
+import { IoLocation } from "react-icons/io5";
+import { MdAttachEmail } from "react-icons/md";
 import RelatedVendorevents from "../../related-vendors-events/page";
 
 const prisma = new PrismaClient();
@@ -31,18 +35,32 @@ export default async function SingleEvent({ params }) {
                 width={550}
                 height={500}
                 alt=""
-                className="w-[100%]"
+                className="w-[100%] rounded-2xl"
               />
             </div>
             <div className="flex flex-col gap-5 lg:w-[50%] w-full">
               <h1 className="lg:text-6xl text-3xl font-semibold md:text-4xl">
                 {eventz.comapany}
               </h1>
-              <p>{eventz.address}</p>
-              <p>{eventz.description}</p>
-              <p>{eventz.email}</p>
-              <p>{eventz.firstName + " " + eventz.lastName}</p>
-              <p>{eventz.number}</p>
+              <p className="leading-relaxed mt-10">{eventz.description}</p>
+              <div className="mt-10 flex flex-col gap-5">
+                <div className="flex items-center justify-start gap-2">
+                  <MdAttachEmail className="text-xl" />
+                  <p>{eventz.email}</p>
+                </div>
+                <div className="flex items-center justify-start gap-2">
+                  <IoLocation className="text-xl" />
+                  <p>{eventz.address}</p>
+                </div>
+                <div className="flex items-center justify-start gap-2">
+                  <CgProfile className="text-xl" />
+                  <p>{eventz.firstName + " " + eventz.lastName}</p>
+                </div>
+                <div className="flex items-center justify-start gap-2">
+                  <FaMobileAlt className="text-xl" />
+                  <p>{eventz.number}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
