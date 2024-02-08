@@ -1,4 +1,6 @@
 "use client";
+import Carousle from "@/app/components/carousel";
+import Footer from "@/app/components/footer";
 import LoadingScreen from "@/app/components/loading.component";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import { useEffect, useRef, useState } from "react";
@@ -27,17 +29,22 @@ export default function VendorDahsboard() {
       {loading ? (
         <LoadingScreen />
       ) : (
-        <div className="w-[85%] h-full mx-auto">
-          <VendorNavigationPanel />
-          <h1>Vendor Dashboard</h1>
-          <div className="w-full flex flex-col lg:flex-row items-center justify-between h-[40vh]">
-            <div>
-              <Calendar onChange={onChange} value={date} />
-            </div>
-            <div className="w-[100%] h-full md:w-full lg:w-[65%] flex items-center justify-center">
-              <h1>Kanishka</h1>
+        <div>
+          <Carousle />
+          <div className="w-[85%] h-full mx-auto">
+            <VendorNavigationPanel />
+
+            <h1>Vendor Dashboard</h1>
+            <div className="w-full flex flex-col lg:flex-row items-center justify-between h-[40vh]">
+              <div>
+                <Calendar onChange={onChange} value={date} />
+              </div>
+              <div className="w-[100%] h-full md:w-full lg:w-[65%] flex items-center justify-center">
+                <h1>Kanishka</h1>
+              </div>
             </div>
           </div>
+          <Footer />
         </div>
       )}
     </div>

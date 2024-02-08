@@ -2,6 +2,8 @@
 import Aos from "aos";
 import Image from "next/image";
 import { useEffect } from "react";
+import banuka from "../../public/ourteam/banuka.jpg";
+import kavindu from "../../public/ourteam/kavindu.jpg";
 import kpdev from "../../public/ourteam/kpdev (2).jpg";
 
 const people = [
@@ -15,7 +17,7 @@ const people = [
     id: "2",
     name: "Kavindu Weerasingha",
     role: "Software Engineer / KPDEV",
-    image: kpdev,
+    image: kavindu,
   },
   {
     id: "3",
@@ -33,7 +35,7 @@ const people = [
     id: "5",
     name: "Bhanuka Madhumal",
     role: "Frontend Developer / KPDEV",
-    image: kpdev,
+    image: banuka,
   },
   {
     id: "6",
@@ -69,7 +71,7 @@ export default function Example() {
             <li key={person.name}>
               <div className="flex items-center gap-x-6">
                 <Image
-                  className="h-16 w-16 rounded-full "
+                  className="h-16 w-16 rounded-full object-cover"
                   src={person.image}
                   alt=""
                 />
