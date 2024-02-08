@@ -93,7 +93,6 @@ export default function Blogs() {
               data-aos="fade-up"
               data-aos-anchor-placement="top-bottom"
               layoutId={post.id}
-              onClick={() => setSelectedId(item.id)}
               key={post.id}
               className="flex max-w-xl flex-col items-start justify-between">
               <div className="flex items-center gap-x-4 text-xs">

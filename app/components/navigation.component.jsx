@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
+import { IoSettings } from "react-icons/io5";
 
 // Images
 import Link from "next/link";
@@ -115,9 +116,15 @@ export default function Navigation() {
                   tabIndex={0}
                   className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
                   <li className="flex flex-col">
-                    <p>Hii ..!! </p>
+                    <Link href={"settings"}>
+                      <div className="flex items-center gap-2">
+                        <IoSettings className="text-xl" />
+
+                        <p className="font-semibold">Settings</p>
+                      </div>
+                    </Link>
                     <strong className="font-semibold">
-                      {session?.user?.name}
+                      Hi {session?.user?.name}
                     </strong>
                   </li>
                 </ul>
