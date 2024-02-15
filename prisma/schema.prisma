@@ -124,6 +124,7 @@ model Eventz {
   price       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  rating      Rating[]
 }
 
 
@@ -142,4 +143,12 @@ model Booking {
   creatorEmail  String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+model Rating {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  comments      String
+  eventz        Eventz   @relation(fields: [eventzId], references: [id])
+  eventzId      String   @db.ObjectId
+  creator       String
 }
