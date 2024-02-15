@@ -1,6 +1,8 @@
+import CommentsView from "@/app/components/comments-view";
 import Footer from "@/app/components/footer";
 import ModalComponents from "@/app/components/modal.components";
 import Navigation from "@/app/components/navigation.component";
+import RatingView from "@/app/components/rating.components";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
@@ -117,16 +119,24 @@ export default async function SingleEvent({ params }) {
             <ModalComponents />
           </div>
         </div>
+        <div className="mt-16 ">
+          <RelatedBdays />
+        </div>
+        <div className="mt-16">
+          <RatingView id={eventz.id} />
+        </div>
+        <div className="mt-16">
+          <CommentsView id={eventz.id} />
+        </div>
+        <div className="w-36 h-7 mx-auto items-center flex justify-center mt-16">
+          <Link
+            href={"/birthday"}
+            className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
+            Go Back
+          </Link>
+        </div>
+        <Footer />
       </div>
-      <RelatedBdays />
-      <div className="w-36 h-7 mx-auto items-center flex justify-center mt-16">
-        <Link
-          href={"/birthday"}
-          className="bg-red-300 p-4 rounded-2xl font-semibold shadow-red-500 shadow-lg">
-          Go Back
-        </Link>
-      </div>
-      <Footer />
     </div>
   );
 }

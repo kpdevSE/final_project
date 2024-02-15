@@ -56,7 +56,7 @@ export default function ModalComponents() {
               userEmail: data.userEmail,
               sellerEmail: data.sellerEmail,
               price: data.price,
-              bookDate: data.bookDate,
+              bookingDate: data.bookingDate,
             }),
           });
           if (bookingEmail.ok) {
