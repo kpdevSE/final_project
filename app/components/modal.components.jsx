@@ -1,20 +1,27 @@
 "use client";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function ModalComponents() {
+  const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const email = session?.user?.email;
   const [data, setData] = useState({
     userName: "",
     sellerName: "",
     sellerEmail: "",
     userEmail: "",
     price: "",
-    catergory: "",
+    category: "",
     mobile: "",
     bookingDate: "",
+    creatorEmail: email,
   });
+
   // const [userName, setUserName] = useState("");
   // const [sellerName, setSellerName] = useState("");
   // const [sellerEmail, setSellerEmail] = useState("");
@@ -25,17 +32,21 @@ export default function ModalComponents() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const requestBody = { ...data, creatorEmail: email };
     try {
+      setLoading(true);
       const response = await fetch("/api/bookingEvents", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(requestBody),
       });
       if (response.ok) {
         toast.success("Event Booking Successfully and send a Email to seller");
+        setLoading(false);
         setTimeout(async () => {
+          setLoading(true);
           const bookingEmail = await fetch("/api/bookingEmail", {
             method: "POST",
             headers: {
@@ -49,6 +60,7 @@ export default function ModalComponents() {
             }),
           });
           if (bookingEmail.ok) {
+            setLoading(false);
             toast.success("Email Send Successfully");
             router.push("/userview-dashboard");
           } else {
@@ -208,11 +220,11 @@ export default function ModalComponents() {
             <div className="relative z-0 w-full mb-5 group flex justify-center items-center mt-5">
               <select
                 className="select select-bordered w-full max-w-xs"
-                value={data.catergory}
+                value={data.category}
                 onChange={(e) => {
                   setData({
                     ...data,
-                    catergory: e.target.value,
+                    category: e.target.value,
                   });
                 }}>
                 <option>Choose</option>
@@ -226,13 +238,19 @@ export default function ModalComponents() {
 
             <button
               type="submit "
-              className="bg-red-300 p-2 rounded-lg shadow-lg shadow-red-300 font-semibold">
-              Book Now
+              className="bg-red-300 p-2 rounded-lg shadow-md shadow-red-300 font-semibold w-[150px] flex items-center justify-center">
+              {loading ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                " Book Now"
+              )}
             </button>
           </form>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn">Close</button>
+              <button className="btn bg-red-700 hover:bg-red-600">
+                <IoCloseSharp className="text-white text-xl " />
+              </button>
             </form>
           </div>
         </div>

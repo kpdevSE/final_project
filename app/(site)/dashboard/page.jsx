@@ -52,7 +52,7 @@ export default function Dashboard() {
           <LoadingScreen />
         </div>
       ) : (
-        <div className="w-full">
+        <div className="w-full overflow-x-hidden overflow-y-hidden">
           <UserHeroSection />
           <motion.h1
             className="text-5xl font-semibold text-center"
@@ -63,16 +63,7 @@ export default function Dashboard() {
           </motion.h1>
           <Example />
 
-          <div className="w-[85%] mx-auto">
-            <div className="w-full h-full mx-auto flex flex-col justify-center items-center ">
-              <p className="text-[50px] text-center">
-                Hiii......... {session?.user?.name}
-              </p>
-              <p className="lg:text-[50px] text-center text-[20px]">
-                Hiii......... {session?.user?.email}
-              </p>
-            </div>
-          </div>
+          <div className="w-[85%] mx-auto h-full"></div>
           <Sponsers />
           <Ceo />
           <UserAboutUs />

@@ -56,6 +56,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  booking       Booking[]
 }
 
 model Vendor {
@@ -132,10 +133,13 @@ model Booking {
   userName      String
   sellerEmail   String
   userEmail     String
+  creator       User     @relation(fields: [creatorId], references: [id])
+  creatorId     String   @db.ObjectId
   price         String?
   mobile        String?
   bookingDate   String?
-  catergory     String
+  category      String?
+  creatorEmail  String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

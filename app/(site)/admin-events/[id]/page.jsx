@@ -4,6 +4,10 @@ import Footer from "@/app/components/footer";
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import { BsPersonSquare, BsTelephoneFill } from "react-icons/bs";
+import { IoLocationSharp } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import AdminRelatedEvents from "../../admin-related-events/page";
 
 const prisma = new PrismaClient();
@@ -38,12 +42,28 @@ export default async function SingleEvent({ params }) {
               <h1 className="lg:text-6xl text-3xl font-semibold md:text-4xl">
                 {eventz.comapany}
               </h1>
-              <p>{eventz.address}</p>
               <p>{eventz.description}</p>
-              <p>{eventz.email}</p>
-              <p>{eventz.firstName + " " + eventz.lastName}</p>
-              <p>{eventz.number}</p>
-              <p className="text-lg font-semibold">Rs: {eventz.price}.00</p>
+              <div className="flex items-center justify-start gap-3">
+                <IoLocationSharp className="text-2xl" />
+                <p>{eventz.address}</p>
+              </div>
+              <div className="flex items-center justify-start gap-3">
+                <MdEmail className="text-2xl" />
+                <p>{eventz.email}</p>
+              </div>
+              <div className="flex items-center justify-start gap-2">
+                <BsPersonSquare className="text-2xl" />
+                <p>{eventz.firstName + " " + eventz.lastName}</p>
+              </div>
+              <div className="flex items-center justify-start gap-2">
+                <BsTelephoneFill className="text-2xl" />
+                <p>{eventz.number}</p>
+              </div>
+              <div className="flex items-center justify-start gap-2">
+                <RiMoneyDollarCircleFill className="text-2xl" />
+                <p className="text-lg font-semibold">Rs: {eventz.price}.00</p>
+              </div>
+
               <div className="flex flex-col items-center justify-start lg:flex-row md:flex-row gap-10">
                 <EventsUpdateModalButton id={eventz.id} />
               </div>

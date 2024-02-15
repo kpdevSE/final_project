@@ -10,8 +10,9 @@ export async function POST(request) {
     sellerEmail,
     mobile,
     price,
-    catergory,
+    category,
     bookingDate,
+    creatorEmail,
   } = body;
   console.log(body);
 
@@ -19,7 +20,7 @@ export async function POST(request) {
     (!userName,
     !sellerName,
     !price,
-    !catergory,
+    !category,
     !userEmail,
     !sellerEmail,
     !mobile,
@@ -30,14 +31,16 @@ export async function POST(request) {
 
   const booking = await prisma.booking.create({
     data: {
+      creatorEmail,
       userName,
       sellerName,
       userEmail,
       sellerEmail,
       mobile,
-      catergory,
+      category,
       price,
       bookingDate,
+      creator: { connect: { email: creatorEmail.toLowerCase() } },
     },
   });
 
