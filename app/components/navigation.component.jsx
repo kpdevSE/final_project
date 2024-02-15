@@ -15,6 +15,7 @@ import logoImage from "../../public/logo/logo.png";
 // Icons
 import { MdDashboard, MdEmojiEvents } from "react-icons/md";
 import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri";
+import MyBooking from "../(site)/mybooking-events/page";
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -58,24 +59,13 @@ export default function Navigation() {
                   </li>
                 </Link>
               ))}
-            <div className="hidden lg:block">
-              {status === "authenticated" ? (
-                <button
-                  className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg shadow-md shadow-[#8ceaf7]"
-                  onClick={() => {
-                    signOut();
-                    router.push("/");
-                  }}>
-                  Log Out
-                </button>
-              ) : (
-                <Link href={"/login"} className="font-semibold text-lg">
-                  <li className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
-                    Log In
-                  </li>
-                </Link>
-              )}
-            </div>
+
+            {/* <Link href={"/mybooking-events"}>
+              <li className="hidden lg:block">
+                <FaShoppingCart className="w-[30px] h-[30px] hover:text-[#01a2b7]" />
+              </li>
+            </Link> */}
+            <MyBooking />
 
             <li>
               <svg
@@ -130,6 +120,24 @@ export default function Navigation() {
                 </ul>
               </div>
             </li>
+            <div className="hidden lg:block">
+              {status === "authenticated" ? (
+                <button
+                  className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg shadow-md shadow-[#8ceaf7]"
+                  onClick={() => {
+                    signOut();
+                    router.push("/");
+                  }}>
+                  Log Out
+                </button>
+              ) : (
+                <Link href={"/login"} className="font-semibold text-lg">
+                  <li className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
+                    Log In
+                  </li>
+                </Link>
+              )}
+            </div>
           </ul>
         </div>
         {/* End of Navlist Section */}
@@ -208,6 +216,12 @@ export default function Navigation() {
                             <p className="text-lg decoration-none">Evnents</p>
                           </div>
                         </Link>
+
+                        <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
+                          <MyBooking />
+                          <p className="text-lg decoration-none">My Booking</p>
+                        </div>
+
                         <div>
                           {status === "authenticated" ? (
                             <button
