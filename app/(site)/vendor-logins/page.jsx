@@ -1,30 +1,34 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 import toast from "react-hot-toast";
 
-export default function VendorLogin() {
+export default function VendorLogin()
+{
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginFunction = async (e) => {
+  const loginFunction = async (e) =>
+  {
     e.preventDefault();
     const response = await fetch("/api/vendor-login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({email, password}),
     });
 
-    if (response.ok) {
+    if (response.ok)
+    {
       const data = await response.json();
       console.log(data);
       toast.success("Login Successfully");
       router.push("/vendor-dashboard");
-    } else {
+    } else
+    {
       toast.error("Login Failed");
     }
   };

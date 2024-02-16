@@ -1,12 +1,13 @@
 import AdminNavigationPanel from "@/app/components/admin-navigation";
 import EventsUpdateModalButton from "@/app/components/eventz-update-modal";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 const prisma = new PrismaClient();
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const eventz = await prisma.eventz.findFirst({
     where: {
       id: params.id,

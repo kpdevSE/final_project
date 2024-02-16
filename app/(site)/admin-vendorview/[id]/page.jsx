@@ -1,5 +1,5 @@
 import AdminNavigationPanel from "@/app/components/admin-navigation";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 
 import Image from "next/image";
 
@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 // Images
 import profile from "../../../../public/profile/profile.png";
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const vendor = await prisma.vendor.findFirst({
     where: {
       id: params.id,

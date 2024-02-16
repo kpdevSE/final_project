@@ -1,42 +1,50 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
-import { Modal } from "antd";
+import {Modal} from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import toast from "react-hot-toast";
 
 // Images
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import logo from "../../../public/logo/logo.png";
 
-export default function RelatedVendorevents({ params }) {
+export default function RelatedVendorevents({params})
+{
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
   const [open, setOpen] = useState(false);
 
   const cancelButtonRef = useRef(null);
 
-  const fetchData = async () => {
-    try {
+  const fetchData = async () =>
+  {
+    try
+    {
       const response = await fetch("/api/vendors-events-all");
 
-      if (response.ok) {
+      if (response.ok)
+      {
         const result = await response.json();
         setData(result.events);
         console.log(result.events);
-      } else {
+      } else
+      {
         toast.error("Error fetching events");
       }
-    } catch (error) {
+    } catch (error)
+    {
       console.error("Error fetching events:", error);
       toast.error("Unexpected error occurred");
     }
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     fetchData();
-    setTimeout(() => {
+    setTimeout(() =>
+    {
       setloading(false);
     }, 1500);
   }, []);
@@ -44,28 +52,33 @@ export default function RelatedVendorevents({ params }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredItems, setFilteredItems] = useState(data);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query) =>
+  {
     const filtered = data.filter((event) =>
       event.option.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredItems(filtered);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
+  {
     const query = e.target.value;
     setSearchQuery(query);
     handleSearch(query);
   };
 
-  const handleDelete = async (id) => {
-    try {
+  const handleDelete = async (id) =>
+  {
+    try
+    {
       const response = await fetch(`/api/get-all-events/${id}`, {
         method: "DELETE",
       });
       toast.success("Event Deleted Successfully");
       window.location.reload();
       fetchData();
-    } catch (error) {
+    } catch (error)
+    {
       console.error("Unexpected error during delete:", error);
     }
   };
@@ -88,7 +101,8 @@ export default function RelatedVendorevents({ params }) {
                 strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-6 h-6"
-                onClick={() => {
+                onClick={() =>
+                {
                   setOpen(true);
                 }}>
                 <path
@@ -136,17 +150,17 @@ export default function RelatedVendorevents({ params }) {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6">
+                        className="w-6 h-6">
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
                         />
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                         />
                       </svg>
@@ -233,17 +247,17 @@ export default function RelatedVendorevents({ params }) {
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke-width="1.5"
+                            strokeWidth="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6">
+                            className="w-6 h-6">
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
                             />
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                               d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                             />
                           </svg>

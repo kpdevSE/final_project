@@ -1,23 +1,24 @@
 "use client";
 import AdminNavigationPanel from "@/app/components/admin-navigation";
 import Footer from "@/app/components/footer";
-import { axisClasses } from "@mui/x-charts";
-import { BarChart } from "@mui/x-charts/BarChart";
+import {axisClasses} from "@mui/x-charts";
+import {BarChart} from "@mui/x-charts/BarChart";
 import Image from "next/image";
-import { FaArrowUp } from "react-icons/fa";
-import {
+import {FaArrowUp} from "react-icons/fa";
+import
+{
   MdEmojiEvents,
   MdOutlineIncompleteCircle,
   MdPending,
 } from "react-icons/md";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import {RiMoneyDollarCircleFill} from "react-icons/ri";
 import logo from "../../../public/logo/logo.png";
 
 const data = [
-  { value: 5, label: "A" },
-  { value: 10, label: "B" },
-  { value: 15, label: "C" },
-  { value: 20, label: "D" },
+  {value: 5, label: "A"},
+  {value: 10, label: "B"},
+  {value: 15, label: "C"},
+  {value: 20, label: "D"},
 ];
 
 const size = {
@@ -160,7 +161,8 @@ const chartSetting = {
 
 const valueFormatter = (value) => `${value}mm`;
 
-export default function AdminDashboard() {
+export default function AdminDashboard()
+{
   const dummyAdminCredentials = {
     username: "kpdev",
     email: "kanishkapasindu6@gmail.com",
@@ -171,7 +173,7 @@ export default function AdminDashboard() {
       <div className="w-[85%] mx-auto h-full">
         <AdminNavigationPanel />
         <div className="mt-16">
-          <Image src={logo} />
+          <Image src={logo} alt="" />
         </div>
         <div className="mt-6 w-full  flex flex-col items-center justify-center">
           <h2 className="text-3xl font-semibold">Admin Dashboard</h2>
@@ -205,12 +207,12 @@ export default function AdminDashboard() {
             <BarChart
               className="w-full"
               dataset={dataset}
-              xAxis={[{ scaleType: "band", dataKey: "month" }]}
+              xAxis={[{scaleType: "band", dataKey: "month"}]}
               series={[
-                { dataKey: "london", label: "Galle", valueFormatter },
-                { dataKey: "paris", label: "Kandy", valueFormatter },
-                { dataKey: "newYork", label: "Colombo", valueFormatter },
-                { dataKey: "seoul", label: "Jaffna", valueFormatter },
+                {dataKey: "london", label: "Galle", valueFormatter},
+                {dataKey: "paris", label: "Kandy", valueFormatter},
+                {dataKey: "newYork", label: "Colombo", valueFormatter},
+                {dataKey: "seoul", label: "Jaffna", valueFormatter},
               ]}
               {...chartSetting}
             />

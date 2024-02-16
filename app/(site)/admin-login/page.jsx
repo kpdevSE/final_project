@@ -2,8 +2,8 @@
 import LoadingScreen from "@/app/components/loading.component";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import logo from "../../../public/logo/logo.png";
 
@@ -13,7 +13,8 @@ const dummyAdminCredentials = {
   password: "kpdev",
 };
 
-export default function AdminLogin() {
+export default function AdminLogin()
+{
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,20 +22,25 @@ export default function AdminLogin() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
+  useEffect(() =>
+  {
+    setTimeout(() =>
+    {
       setLoading(false);
     }, 1500);
   });
 
-  const handleLogin = () => {
+  const handleLogin = () =>
+  {
     if (
       email === dummyAdminCredentials.email &&
       password === dummyAdminCredentials.password
-    ) {
+    )
+    {
       toast.success("welcome" + " " + dummyAdminCredentials.email);
       router.push("/admin-dashboard");
-    } else {
+    } else
+    {
       setError("Invalid credentials");
     }
   };
