@@ -2,11 +2,12 @@
 
 import LoadingScreen from "@/app/components/loading.component";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 
-export default function Registetr() {
+export default function Registetr()
+{
   const [data, setData] = useState({
     name: "",
     password: "",
@@ -21,15 +22,18 @@ export default function Registetr() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
+  useEffect(() =>
+  {
+    setTimeout(() =>
+    {
       setLoading(false);
     }, 1500);
   }, []);
 
   const router = useRouter();
 
-  const registerUser = async (e) => {
+  const registerUser = async (e) =>
+  {
     e.preventDefault();
     const response = await fetch("/api/vendor-register", {
       method: "POST",
@@ -39,10 +43,12 @@ export default function Registetr() {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (!response.ok)
+    {
       console.error("Request failed:", response.status, response.statusText);
       toast.error("Registration Failed");
-    } else {
+    } else
+    {
       toast.success("User Registration Successfully");
       router.push("/vendor-logins");
     }

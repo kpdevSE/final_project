@@ -3,14 +3,15 @@ import Footer from "@/app/components/footer";
 import ModalComponents from "@/app/components/modal.components";
 import Navigation from "@/app/components/navigation.component";
 import RatingView from "@/app/components/rating.components";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import RelatedWeddiing from "../../related-weddings/page";
 
 const prisma = new PrismaClient();
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const eventz = await prisma.eventz.findFirst({
     where: {
       id: params.id,
@@ -72,8 +73,8 @@ export default async function SingleEvent({ params }) {
                     d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
                   />
                 </svg>

@@ -3,24 +3,28 @@ import Carousle from "@/app/components/carousel";
 import Footer from "@/app/components/footer";
 import LoadingScreen from "@/app/components/loading.component";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../vendor-dashboard/style.module.css";
 
-export default function VendorDahsboard() {
+export default function VendorDahsboard()
+{
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState(new Date());
   const chartRef = useRef(null);
   const data = [12, 19, 3, 5, 2, 3];
   const labels = ["January", "February", "March", "April", "May", "June"];
 
-  const onChange = (newDate) => {
+  const onChange = (newDate) =>
+  {
     setDate(newDate);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
+  useEffect(() =>
+  {
+    setTimeout(() =>
+    {
       setLoading(false);
     }, 1500);
   }, [data, labels]);

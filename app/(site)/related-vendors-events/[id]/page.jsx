@@ -1,11 +1,12 @@
 import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
 
 const prisma = new PrismaClient();
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const eventz = await prisma.eventz.findFirst({
     where: {
       id: params.id,

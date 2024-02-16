@@ -10,6 +10,7 @@ import {useEffect, useRef, useState} from "react";
 import toast from "react-hot-toast";
 
 // Images
+import BackButton from "@/app/components/backButton";
 import EventsLoader from "@/app/components/eventLoader";
 import Footer from "@/app/components/footer";
 import logo from "../../../public/logo/logo.png";
@@ -84,6 +85,7 @@ export default function Weddiing()
       <Navigation />
       {loading ? (<EventsLoader />) : (
         <div>
+          <BackButton />
           <div className="w-[85%] h-full mx-auto relative top-44">
             <div className="flex items-center justify-between w-[95%] mx-auto">
               <Image src={logo} />
@@ -136,7 +138,7 @@ export default function Weddiing()
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6">
+                      className="w-6 h-6">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"

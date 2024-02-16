@@ -1,16 +1,17 @@
 import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
-import { CgProfile } from "react-icons/cg";
-import { FaMobileAlt } from "react-icons/fa";
-import { IoLocation } from "react-icons/io5";
-import { MdAttachEmail } from "react-icons/md";
+import {CgProfile} from "react-icons/cg";
+import {FaMobileAlt} from "react-icons/fa";
+import {IoLocation} from "react-icons/io5";
+import {MdAttachEmail} from "react-icons/md";
 import RelatedVendorevents from "../../related-vendors-events/page";
 
 const prisma = new PrismaClient();
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const eventz = await prisma.eventz.findFirst({
     where: {
       id: params.id,

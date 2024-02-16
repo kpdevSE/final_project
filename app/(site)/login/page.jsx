@@ -1,40 +1,47 @@
 "use client";
 
 import Footer from "@/app/components/footer";
-import { signIn } from "next-auth/react";
+import {signIn} from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 import toast from "react-hot-toast";
-import { FaFacebook, FaTwitter } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import {FaFacebook, FaTwitter} from "react-icons/fa";
+import {FcGoogle} from "react-icons/fc";
 import logo from "../../../public/logo/logo.png";
 import wedding from "../../../public/wedding/weddinghome.jpg";
 
-export default function Login() {
+export default function Login()
+{
   const [data, setData] = useState({
     password: "",
     email: "",
   });
   const router = useRouter();
 
-  const logingUser = async (e) => {
+  const logingUser = async (e) =>
+  {
     e.preventDefault();
+
     signIn("credentials", {
       redirect: false,
       email: data.email,
       password: data.password,
     })
-      .then((response) => {
-        if (response.ok) {
+      .then((response) =>
+      {
+        if (response.ok)
+        {
           toast.success("Login Successfully");
           router.push("/dashboard");
-        } else {
+        } else
+        {
           toast.error("Email or Password is incorrect");
         }
       })
-      .catch(() => {
+      .catch(() =>
+      {
         toast.error("Something went wrong");
       });
   };
