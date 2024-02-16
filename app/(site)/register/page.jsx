@@ -5,13 +5,16 @@ import LoadingScreen from "@/app/components/loading.component";
 import "aos/dist/aos.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 import toast from "react-hot-toast";
 import get from "../../../public/gettogether/gettogether1.png";
 import logo from "../../../public/logo/logo.png";
 
-export default function Registetr() {
+
+
+export default function Registetr()
+{
   const [data, setData] = useState({
     name: "",
     password: "",
@@ -21,18 +24,16 @@ export default function Registetr() {
     nicNumber: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-  }, []);
+
 
   const router = useRouter();
 
-  const registerUser = async (e) => {
+  const registerUser = async (e) =>
+  {
     e.preventDefault();
+    setLoading(true)
     const response = await fetch("/api/register", {
       method: "POST",
       headers: {
@@ -41,21 +42,24 @@ export default function Registetr() {
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
+    if (!response.ok)
+    {
       console.error("Request failed:", response.status, response.statusText);
       toast.error("Registration Failed");
-    } else {
+    } else
+    {
       toast.success("User Registration Successfully");
+      setLoading(false)
       router.push("/login");
     }
   };
 
   return (
-    <div className="w-full h-[100%]">
+    <div className="w-full h-[100%]" >
       {loading ? (
         <LoadingScreen />
       ) : (
-        <div>
+        <div >
           <div className="w-[85%] flex items-center justify-center mx-auto">
             <Image alt="" src={logo} className="mt-10" />
           </div>

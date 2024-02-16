@@ -1,9 +1,9 @@
 "use client";
 import LoadingScreen from "@/app/components/loading.component";
-import { motion } from "framer-motion";
-import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {motion} from "framer-motion";
+import {getSession, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
 
 // Images
 import ButtonHover from "@/app/components/buttonhover";
@@ -18,27 +18,33 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import toast from "react-hot-toast";
 
-export default function Dashboard() {
+export default function Dashboard()
+{
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const {data: session, status} = useSession();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     AOS.init({
       duration: 2000,
     });
 
-    const securePage = async () => {
+    const securePage = async () =>
+    {
       const sessionClient = await getSession();
-      if (!sessionClient) {
+      if (!sessionClient)
+      {
         router.push("/login");
-      } else {
+      } else
+      {
         setLoading(false);
       }
     };
     securePage();
 
-    if (status === "authenticated") {
+    if (status === "authenticated")
+    {
       toast.success(`Hey ${session?.user?.name}`);
       toast.success(`Hey ${session?.user?.email}`);
     }
@@ -56,9 +62,9 @@ export default function Dashboard() {
           <UserHeroSection />
           <motion.h1
             className="text-5xl font-semibold text-center"
-            initial={{ y: 500 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1 }}>
+            initial={{y: 500}}
+            animate={{y: 0}}
+            transition={{duration: 1}}>
             Our Team
           </motion.h1>
           <Example />

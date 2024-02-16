@@ -1,52 +1,63 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { Fragment, useEffect, useState } from "react";
+import {Dialog, Transition} from "@headlessui/react";
+import {XMarkIcon} from "@heroicons/react/24/outline";
+import {getSession, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import {Fragment, useEffect, useState} from "react";
 import toast from "react-hot-toast";
-import { FaMoneyBillAlt, FaShoppingCart } from "react-icons/fa";
-import { FiType } from "react-icons/fi";
-import { HiDevicePhoneMobile } from "react-icons/hi2";
-import { IoCloseSharp } from "react-icons/io5";
-import {
+import {FaMoneyBillAlt, FaShoppingCart} from "react-icons/fa";
+import {FiType} from "react-icons/fi";
+import {HiDevicePhoneMobile} from "react-icons/hi2";
+import {IoCloseSharp} from "react-icons/io5";
+import
+{
   MdDriveFileRenameOutline,
   MdMarkEmailRead,
   MdOutlineEmail,
 } from "react-icons/md";
-import { SlCalender } from "react-icons/sl";
-import { TbBrandFramerMotion } from "react-icons/tb";
+import {SlCalender} from "react-icons/sl";
+import {TbBrandFramerMotion} from "react-icons/tb";
 
-export default function MyBooking() {
-  const { data: session } = useSession();
+export default function MyBooking()
+{
+  const {data: session} = useSession();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [booking, setBooking] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const fetchData = async () => {
-    try {
+  const fetchData = async () =>
+  {
+    try
+    {
       const response = await fetch("/api/mybooking");
-      if (response.ok) {
+      if (response.ok)
+      {
         const result = await response.json();
         console.log(result);
-        if (result && result.bookings) {
+        if (result && result.bookings)
+        {
           setBooking(result.bookings);
           console.log(booking);
-        } else {
+        } else
+        {
           console.error("Unexpected response format:", result);
         }
-      } else {
+      } else
+      {
         console.error("Error fetching data:", response.statusText);
       }
-    } catch (error) {
+    } catch (error)
+    {
       console.error("Error fetching events:", error);
       toast.error("Unexpected error occurred");
     }
   };
-  const handleDelete = async (id) => {
-    try {
+  const handleDelete = async (id) =>
+  {
+    try
+    {
       setLoading(true);
       const response = await fetch(`/api/mybooking/${id}`, {
         method: "DELETE",
@@ -54,7 +65,8 @@ export default function MyBooking() {
       toast.success("event canceled successfully");
       window.location.reload();
       fetchData();
-    } catch (error) {
+    } catch (error)
+    {
       console.error("Unexpected error during delete:", error);
     }
   };
@@ -66,13 +78,18 @@ export default function MyBooking() {
   );
   console.log(mybooking);
 
-  useEffect(() => {
-    const securePage = async () => {
+  useEffect(() =>
+  {
+    const securePage = async () =>
+    {
       const sessionClient = await getSession();
-      if (!sessionClient) {
+      if (!sessionClient)
+      {
         router.push("/login");
-      } else {
-        setTimeout(() => {
+      } else
+      {
+        setTimeout(() =>
+        {
           setLoading(false);
         }, 1100);
       }
@@ -86,7 +103,8 @@ export default function MyBooking() {
       <div>
         <li
           className="hidden lg:block"
-          onClick={() => {
+          onClick={() =>
+          {
             setOpen(true);
           }}>
           <FaShoppingCart className="w-[30px] h-[30px] hover:text-[#01a2b7]" />
@@ -143,7 +161,8 @@ export default function MyBooking() {
                           </button>
                         </div>
                         <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                          {mybooking.map((e) => {
+                          {mybooking.map((e) =>
+                          {
                             return (
                               <div
                                 key={e.id}
@@ -234,7 +253,8 @@ export default function MyBooking() {
 
                                   <button
                                     className="w-[50px] h-[35px] bg-red-500 shadow-lg shadow-red-200 rounded-lg font-semibold text-white flex items-center justify-center gap-3"
-                                    onClick={() => {
+                                    onClick={() =>
+                                    {
                                       handleDelete(e.id);
                                     }}>
                                     {loading ? (
