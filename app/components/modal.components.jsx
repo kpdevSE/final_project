@@ -1,12 +1,14 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 import toast from "react-hot-toast";
-import { IoCloseSharp } from "react-icons/io5";
+import {IoCloseSharp} from "react-icons/io5";
 
-export default function ModalComponents() {
-  const { data: session } = useSession();
+export default function ModalComponents({price})
+{
+  const priceEvent = price;
+  const {data: session} = useSession();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const email = session?.user?.email;
@@ -15,7 +17,7 @@ export default function ModalComponents() {
     sellerName: "",
     sellerEmail: "",
     userEmail: "",
-    price: "",
+    price: priceEvent,
     category: "",
     mobile: "",
     bookingDate: "",
@@ -30,10 +32,12 @@ export default function ModalComponents() {
   // const [catergory, setCatergory] = useState("");
   // const [bookDate, setBookDate] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
-    const requestBody = { ...data, creatorEmail: email };
-    try {
+    const requestBody = {...data, creatorEmail: email};
+    try
+    {
       setLoading(true);
       const response = await fetch("/api/bookingEvents", {
         method: "POST",
@@ -42,10 +46,12 @@ export default function ModalComponents() {
         },
         body: JSON.stringify(requestBody),
       });
-      if (response.ok) {
+      if (response.ok)
+      {
         toast.success("Event Booking Successfully and send a Email to seller");
         setLoading(false);
-        setTimeout(async () => {
+        setTimeout(async () =>
+        {
           setLoading(true);
           const bookingEmail = await fetch("/api/bookingEmail", {
             method: "POST",
@@ -59,18 +65,22 @@ export default function ModalComponents() {
               bookingDate: data.bookingDate,
             }),
           });
-          if (bookingEmail.ok) {
+          if (bookingEmail.ok)
+          {
             setLoading(false);
             toast.success("Email Send Successfully");
             router.push("/userview-dashboard");
-          } else {
+          } else
+          {
             toast.error("Email not Sent.");
           }
         }, 2000);
-      } else {
+      } else
+      {
         toast.error("Booking Failed");
       }
-    } catch (error) {
+    } catch (error)
+    {
       console.error("Email Sending Error:", error);
       toast.error("Something went wrong with a email sending");
     }
@@ -98,8 +108,9 @@ export default function ModalComponents() {
                   required
                   placeholder="Enter Your Name"
                   value={data.userName}
-                  onChange={(e) => {
-                    setData({ ...data, userName: e.target.value });
+                  onChange={(e) =>
+                  {
+                    setData({...data, userName: e.target.value});
                   }}
                 />
               </div>
@@ -112,7 +123,8 @@ export default function ModalComponents() {
                   required
                   placeholder="Enter Your Email Address"
                   value={data.userEmail}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     setData({
                       ...data,
                       userEmail: e.target.value,
@@ -131,7 +143,8 @@ export default function ModalComponents() {
                   required
                   placeholder="Enter Seller Name"
                   value={data.sellerName}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     setData({
                       ...data,
                       sellerName: e.target.value,
@@ -148,7 +161,8 @@ export default function ModalComponents() {
                   required
                   placeholder="Enter Seller Email"
                   value={data.sellerEmail}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     setData({
                       ...data,
                       sellerEmail: e.target.value,
@@ -160,21 +174,27 @@ export default function ModalComponents() {
             <div className="flex flex-col items-center justify-center w-full lg:flex-row gap-3 mt-3">
               <div className="w-full flex flex-col gap-2">
                 <input
-                  type="text"
+                  type="date"
                   name=""
                   id=""
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   required
-                  placeholder="Price"
-                  value={data.price}
-                  onChange={(e) => {
+                  placeholder="When will you hold your Event"
+                  value={data.bookingDate}
+                  onChange={(e) =>
+                  {
+                    const selectedDate = e.target.value;
+                    const formattedDate = new Date(selectedDate)
+                      .toISOString()
+                      .split("T")[0];
                     setData({
                       ...data,
-                      price: e.target.value,
+                      bookingDate: formattedDate,
                     });
                   }}
                 />
               </div>
+
               <div className="w-full flex flex-col gap-2">
                 <input
                   type="text"
@@ -184,7 +204,8 @@ export default function ModalComponents() {
                   required
                   placeholder="Your Mobile Number"
                   value={data.mobile}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     setData({
                       ...data,
                       mobile: e.target.value,
@@ -193,35 +214,14 @@ export default function ModalComponents() {
                 />
               </div>
             </div>
-            <div className="w-full flex flex-col gap-2">
-              <label htmlFor="" className="mt-6">
-                When Will you hold your Event?
-              </label>
-              <input
-                type="date"
-                name=""
-                id=""
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                required
-                placeholder="When will you hold your Event"
-                value={data.bookingDate}
-                onChange={(e) => {
-                  const selectedDate = e.target.value;
-                  const formattedDate = new Date(selectedDate)
-                    .toISOString()
-                    .split("T")[0];
-                  setData({
-                    ...data,
-                    bookingDate: formattedDate,
-                  });
-                }}
-              />
-            </div>
+
+
             <div className="relative z-0 w-full mb-5 group flex justify-center items-center mt-5">
               <select
                 className="select select-bordered w-full max-w-xs"
                 value={data.category}
-                onChange={(e) => {
+                onChange={(e) =>
+                {
                   setData({
                     ...data,
                     category: e.target.value,
@@ -234,6 +234,11 @@ export default function ModalComponents() {
                 <option value="conserts">Live Conserts</option>
                 <option value="djs">Dj</option>
               </select>
+            </div>
+            <div className="flex flex-col items-center justify-center w-full lg:flex-row gap-3 mt-10">
+
+              <p>Event Price :-</p>
+              <p className="text-lg font-semibold">Rs: <span className="text-xl">{priceEvent}.00</span></p>
             </div>
 
             <button

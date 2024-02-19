@@ -1,10 +1,12 @@
 "use client";
 
-import { UploadDropzone } from "@uploadthing/react";
-import { useState } from "react";
+import {UploadDropzone} from "@uploadthing/react";
+import {useState} from "react";
 import toast from "react-hot-toast";
 
-export default function EventsUpdateModalButton({ id }) {
+export default function EventsUpdateModalButton({id})
+{
+  const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setfirstName] = useState("");
@@ -15,13 +17,16 @@ export default function EventsUpdateModalButton({ id }) {
   const [number, setNumber] = useState("");
   const [option, setOption] = useState("");
   const [price, setprice] = useState("");
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
 
-    if (!id) {
+    if (!id)
+    {
       console.log("id is not defined");
     }
-    try {
+    try
+    {
       const body = {
         firstName,
         lastName,
@@ -34,6 +39,7 @@ export default function EventsUpdateModalButton({ id }) {
         description,
         price,
       };
+      setLoading(true)
       const response = await fetch(`/api/get-all-events/${id}`, {
         method: "PUT",
         headers: {
@@ -42,10 +48,13 @@ export default function EventsUpdateModalButton({ id }) {
         body: JSON.stringify(body),
       });
 
-      if (!response.ok) {
+      if (!response.ok)
+      {
         toast.error("Event creation failed. Please try again.");
-      } else {
+      } else
+      {
         toast.success("Event updated successfully");
+        setLoading(false)
         window.location.reload(`/admin-events/${id}`);
       }
     } catch {
@@ -66,12 +75,14 @@ export default function EventsUpdateModalButton({ id }) {
           <form className=" mx-auto w-full" onSubmit={handleSubmit}>
             <UploadDropzone
               endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
+              onClientUploadComplete={(res) =>
+              {
                 console.log("Files: ", res);
                 toast.success("Image Uploaded");
                 setImageUrl(res[0].url);
               }}
-              onUploadError={(error) => {
+              onUploadError={(error) =>
+              {
                 alert(`ERROR! ${error.message}`);
               }}
             />
@@ -84,7 +95,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={firstName}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   firstName: e.target.value,
@@ -107,7 +119,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={lastName}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   lastName: e.target.value,
@@ -132,7 +145,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={number}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   number: e.target.value,
@@ -155,7 +169,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={comapany}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   comapany: e.target.value,
@@ -180,7 +195,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={email}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   email: e.target.value,
@@ -203,7 +219,8 @@ export default function EventsUpdateModalButton({ id }) {
                   className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   value={address}
-                  onChange={(e) => {
+                  onChange={(e) =>
+                  {
                     // setData({
                     //   ...data,
                     //   address: e.target.value,
@@ -228,7 +245,8 @@ export default function EventsUpdateModalButton({ id }) {
                 className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer h-[200px]"
                 placeholder=" "
                 value={description}
-                onChange={(e) => {
+                onChange={(e) =>
+                {
                   setDescription(e.target.value);
                 }}
                 required
@@ -247,7 +265,8 @@ export default function EventsUpdateModalButton({ id }) {
                 className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 value={price}
-                onChange={(e) => {
+                onChange={(e) =>
+                {
                   // setData({
                   //   ...data,
                   //   address: e.target.value,
@@ -266,7 +285,8 @@ export default function EventsUpdateModalButton({ id }) {
               <select
                 className="select select-bordered w-full max-w-xs"
                 value={option}
-                onChange={(e) => {
+                onChange={(e) =>
+                {
                   setOption(e.target.value);
                 }}>
                 <option>Choose</option>
@@ -280,12 +300,16 @@ export default function EventsUpdateModalButton({ id }) {
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Submit
+              {
+                loading ? (<div className="flex items-center justify-center">
+                  <span className="loading loading-ring loading-lg"></span>
+                </div>) : ("Submit")
+              }
+
             </button>
           </form>
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button, it will close the modal */}
               <button className="btn">Close</button>
             </form>
           </div>

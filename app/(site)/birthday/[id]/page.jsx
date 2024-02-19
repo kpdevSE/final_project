@@ -3,14 +3,15 @@ import Footer from "@/app/components/footer";
 import ModalComponents from "@/app/components/modal.components";
 import Navigation from "@/app/components/navigation.component";
 import RatingView from "@/app/components/rating.components";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import RelatedBdays from "../../related-bdays/page";
 
 const prisma = new PrismaClient();
 
-export default async function SingleEvent({ params }) {
+export default async function SingleEvent({params})
+{
   const eventz = await prisma.eventz.findFirst({
     where: {
       id: params.id,
@@ -116,7 +117,7 @@ export default async function SingleEvent({ params }) {
                 Rs: {eventz.price}.00
               </p>
             </div>
-            <ModalComponents />
+            <ModalComponents price={eventz.price} />
           </div>
         </div>
         <div className="mt-16 ">
