@@ -117,7 +117,7 @@ export default async function SingleEvent({params})
                 Rs: {eventz.price}.00
               </p>
             </div>
-            <ModalComponents />
+            <ModalComponents price={eventz.price} />
           </div>
         </div>
         <div className="mt-16">
