@@ -1,17 +1,18 @@
 "use client";
-import { useSession } from "next-auth/react";
+import {useSession} from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 import toast from "react-hot-toast";
-import { FaRegCommentDots } from "react-icons/fa";
+import {FaRegCommentDots} from "react-icons/fa";
 import thinking from "../../public/logo/thinking.png";
 
-export default function RatingView({ id }) {
+export default function RatingView({id})
+{
   const router = useRouter();
   const eventId = id;
   const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
+  const {data: session} = useSession();
   const creator = session?.user?.email;
 
   const [data, setData] = useState({
@@ -22,24 +23,29 @@ export default function RatingView({ id }) {
 
   console.log(eventId);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
 
-    try {
-      const requestBody = { ...data, eventId: eventId, creator: creator };
+    try
+    {
+      const requestBody = {...data, eventId: eventId, creator: creator};
       setLoading(true);
       const response = await fetch("/api/add-comments", {
         method: "POST",
-        headers: {
+        headers:
+        {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });
 
-      if (!response.ok) {
+      if (!response.ok)
+      {
         toast.error("Event creation failed. Please try again.");
         console.log(error);
-      } else {
+      } else
+      {
         setLoading(false);
         toast.success("Comment added successfully");
         window.location.reload();

@@ -118,7 +118,7 @@ export default async function SingleEvent({params})
               </p>
             </div>
 
-            <ModalComponents price={eventz.price} />
+            <ModalComponents price={eventz.price} fName={eventz.firstName} lName={eventz.lastName} des={eventz.description} eventzEmail={eventz.email} address={eventz.address} company={eventz.comapany} img={eventz.imageUrl} mobile={eventz.number} eventOption={eventz.option} />
           </div>
         </div>
         <div className="mt-16">
