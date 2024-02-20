@@ -55,19 +55,16 @@ export default function Navigation()
                 <Link href={e.itemLink} key={e.id}>
                   <li
                     key={e.id}
-                    className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden  lg:block  rounded-lg border border-[#01a2b7] shadow-md shadow-[#8ceaf7]">
+                    className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden  lg:block">
                     {e.item}
                   </li>
+
                 </Link>
+
               ))}
-
-            {/* <Link href={"/mybooking-events"}>
-              <li className="hidden lg:block">
-                <FaShoppingCart className="w-[30px] h-[30px] hover:text-[#01a2b7]" />
-              </li>
-            </Link> */}
-            <MyBooking />
-
+            <li>
+              <MyBooking />
+            </li>
             <li>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +122,7 @@ export default function Navigation()
             <div className="hidden lg:block">
               {status === "authenticated" ? (
                 <button
-                  className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg shadow-md shadow-[#8ceaf7]"
+                  className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden  lg:block"
                   onClick={() =>
                   {
                     signOut();
@@ -135,7 +132,7 @@ export default function Navigation()
                 </button>
               ) : (
                 <Link href={"/login"} className="font-semibold text-lg">
-                  <li className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden md:block lg:block  rounded-lg border-[#01a2b7] border shadow-md shadow-[#8ceaf7]">
+                  <li className="text-lg font-semibold hover:bg-[#01a2b7] p-2 hover:border hover:rounded-lg hover:text-white hidden  lg:block">
                     Log In
                   </li>
                 </Link>
@@ -222,7 +219,7 @@ export default function Navigation()
 
                         <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
                           <MyBooking />
-                          <p className="text-lg decoration-none">My Booking</p>
+                          <p>My Booking</p>
                         </div>
 
                         <div>

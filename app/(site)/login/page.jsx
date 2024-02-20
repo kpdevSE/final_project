@@ -51,12 +51,11 @@ export default function Login()
       <div className="w-full flex items-center justify-center mt-8">
         <Image alt="" src={logo} />
       </div>
-      <div className="w-[85%] mx-auto flex justify-between items-center h-full mt-16">
-        <div className="w-[50%] flex flex-col items-center justify-start">
+      <div className="w-[85%] mx-auto flex justify-between items-center h-full mt-16 lg:flex-row flex-col gap-8 md:flex-col">
+        <div className="lg:w-[50%] md:w-full w-full  flex flex-col items-center justify-start">
           <div className="flex items-center justify-center">
             <h2 className="text-2xl font-semibold">Log in to Your Account</h2>
           </div>
-
           <form
             className="bg-white rounded px-8 pt-6 pb-8 mb-4 w-full"
             onSubmit={logingUser}>

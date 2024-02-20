@@ -107,9 +107,7 @@ export default function MyBooking()
   }, []);
   return (
     <div>
-
       <div>
-
         <Button className="hidden lg:block bg-black text-white w-[60px] h-[45px]  items-center justify-center" onClick={() => setOpen(true)} >
           <FaShoppingCart className="w-[30px] h-[30px] " />
         </Button>
