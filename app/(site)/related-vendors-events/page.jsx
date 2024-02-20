@@ -1,5 +1,4 @@
 "use client";
-import LoadingScreen from "@/app/components/loading.component";
 import {Modal} from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import toast from "react-hot-toast";
 
 // Images
+import Loader from "@/app/components/loader";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import logo from "../../../public/logo/logo.png";
 
@@ -86,7 +86,7 @@ export default function RelatedVendorevents({params})
   return (
     <div>
       {loading ? (
-        <LoadingScreen />
+        <Loader />
       ) : (
         <div>
           <div className="w-full h-full mx-auto mt-24">

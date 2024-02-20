@@ -23,6 +23,7 @@ export default function AdminEvents({params})
   {
     try
     {
+      setloading(true);
       const response = await fetch("/api/vendors-events-all");
 
       if (response.ok)
@@ -30,6 +31,7 @@ export default function AdminEvents({params})
         const result = await response.json();
         setData(result.events);
         console.log(result.events);
+        setloading(false);
       } else
       {
         toast.error("Error fetching events");
@@ -44,10 +46,7 @@ export default function AdminEvents({params})
   useEffect(() =>
   {
     fetchData();
-    setTimeout(() =>
-    {
-      setloading(false);
-    }, 1500);
+
   }, []);
 
   const [searchQuery, setSearchQuery] = useState("");
