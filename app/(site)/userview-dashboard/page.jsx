@@ -10,6 +10,7 @@ import Blogs from "@/app/components/blogs";
 import Carousle from "@/app/components/carousel";
 import Footer from "@/app/components/footer";
 import Navigation from "@/app/components/navigation.component";
+import RecentPayment from "@/app/components/paymenthistory";
 import {useEffect, useState} from "react";
 import bdays from "../../../public/bday/bdayhome.jpg";
 import live from "../../../public/conserts/liveconsertshome.jpg";
@@ -100,6 +101,10 @@ export default function UserDashboard()
             );
           })}
         </div>
+        <div className="mt-8 w-[200px] h-full">
+          <RecentPayment />
+        </div>
+
         <Blogs />
       </div>
       <div className="relative top-36">
