@@ -108,7 +108,6 @@ export default function Navigation()
                     <Link href={"settings"}>
                       <div className="flex items-center gap-2">
                         <IoSettings className="text-xl" />
-
                         <p className="font-semibold">Settings</p>
                       </div>
                     </Link>
@@ -217,11 +216,6 @@ export default function Navigation()
                           </div>
                         </Link>
 
-                        <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
-                          <MyBooking />
-                          <p>My Booking</p>
-                        </div>
-
                         <div>
                           {status === "authenticated" ? (
                             <button
@@ -245,8 +239,10 @@ export default function Navigation()
                             </Link>
                           )}
                         </div>
+
                       </div>
                     </div>
+
                   </Dialog.Panel>
                 </Transition.Child>
               </div>

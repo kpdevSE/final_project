@@ -73,7 +73,6 @@ export default async function SingleEvent({params})
           <p className="text-2xl font-semibold mt-36">Related Events ...</p>
           <RelatedVendorevents />
         </div>
-
       </div>
       <Footer />
     </div>
