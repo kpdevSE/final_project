@@ -11,8 +11,11 @@ import paypal from '../../public/logo/verified-by-visa.png';
 import RecentPayment from './paymenthistory';
 
 
-const PaymentMethod = () =>
+const PaymentMethod = ({price, catergory, sellerEmail}) =>
 {
+    const cat = catergory;
+    const priceOrder = price;
+    const sellerEmailEvents = sellerEmail;
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const {data: session} = useSession();
@@ -25,14 +28,17 @@ const PaymentMethod = () =>
         month: "",
         year: "",
         cvv: "",
-        creator: creator
+        creator: creator,
+        catergory: cat,
+        priceBooking: priceOrder,
+        sellerEmailE: sellerEmailEvents,
     });
 
 
     const handleSubmit = async (e) =>
     {
         e.preventDefault();
-        const requestBody = {...data, creator: creator, };
+        const requestBody = {...data, creator: creator, catergory: cat, priceBooking: priceOrder, sellerEmailE: sellerEmailEvents};
         try
         {
             setLoading(true);

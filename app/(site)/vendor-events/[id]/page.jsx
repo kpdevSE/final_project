@@ -1,5 +1,6 @@
 import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
+import VendorComments from "@/app/components/vendorcomments";
 import {PrismaClient} from "@prisma/client";
 import Image from "next/image";
 import {CgProfile} from "react-icons/cg";
@@ -64,9 +65,15 @@ export default async function SingleEvent({params})
               </div>
             </div>
           </div>
+          <div className="mt-10">
+            <VendorComments id={eventz.id} />
+          </div>
         </div>
-        <p className="text-2xl font-semibold mt-36">Related Events ...</p>
-        <RelatedVendorevents />
+        <div className="mt-10">
+          <p className="text-2xl font-semibold mt-36">Related Events ...</p>
+          <RelatedVendorevents />
+        </div>
+
       </div>
       <Footer />
     </div>

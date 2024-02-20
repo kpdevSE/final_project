@@ -11,6 +11,8 @@ export async function POST(request)
         year,
         cvv,
         creator,
+        priceBooking,
+        catergory, sellerEmailE
 
     } = body;
     console.log(body);
@@ -21,7 +23,7 @@ export async function POST(request)
             !month,
             !year,
             !cvv,
-            !creator)
+            !creator, !priceBooking, !sellerEmailE, !catergory)
     )
     {
         return new NextResponse("Missing Feilds", {status: 400});
@@ -35,7 +37,7 @@ export async function POST(request)
             year,
             cvv,
             creator,
-
+            priceBooking, sellerEmailE, catergory
         },
     });
 

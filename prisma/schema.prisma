@@ -162,4 +162,7 @@ model Payment {
   year          String
   cvv           String
   creator       String
+  priceBooking  String?
+  catergory     String?
+  sellerEmailE  String?
 }

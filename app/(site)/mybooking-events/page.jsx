@@ -2,6 +2,7 @@
 
 import Loader from '@/app/components/loader';
 import PaymentMethod from '@/app/components/payment.components';
+import RecentPayment from '@/app/components/paymenthistory';
 import {Button, Modal} from 'antd';
 import {getSession, useSession} from "next-auth/react";
 import Image from "next/image";
@@ -121,7 +122,14 @@ export default function MyBooking()
             top: 20,
           }}
         >
-          <Image src={logo} alt='' width={150} height={150} className='mt-4' />
+          <div className='flex items-center justify-between '>
+
+            <Image src={logo} alt='' width={150} height={150} className='mt-4' />
+            <div className='w-[200px]'>
+
+              <RecentPayment />
+            </div>
+          </div>
           {
             loader ? (<Loader />) : (
               <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center gap-2'>
@@ -136,6 +144,7 @@ export default function MyBooking()
                       <div className=" w-full h-full p-1 flex flex-col gap-2 rounded-2xl">
                         <div className="w-full flex items-start justify-start ">
                           <Image src={e.imageUrl} alt="" width={300} height={300} className="rounded-2xl" />
+
                         </div>
                         <div className="flex items-center justify-start gap-3 ">
                           <FiType className="text-2xl" />
@@ -232,11 +241,8 @@ export default function MyBooking()
                               <IoCloseSharp className="text-white" />
                             )}
                           </button>
-                          <PaymentMethod />
-
+                          <PaymentMethod price={e.price} catergory={e.category} sellerEmail={e.sellerEmail} />
                         </div>
-
-
                       </div>
                     </div>
                   );
