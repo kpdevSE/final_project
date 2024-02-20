@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import {NextResponse} from "next/server";
 import prisma from "../../libs/prismadb";
 
-export async function POST(request) {
+export async function POST(request)
+{
   const body = await request.json();
   const {
     userName,
@@ -13,20 +14,22 @@ export async function POST(request) {
     category,
     bookingDate,
     creatorEmail,
+    imageUrl
   } = body;
   console.log(body);
 
   if (
     (!userName,
-    !sellerName,
-    !price,
-    !category,
-    !userEmail,
-    !sellerEmail,
-    !mobile,
-    !bookingDate)
-  ) {
-    return new NextResponse("Missing Feilds", { status: 400 });
+      !sellerName,
+      !price,
+      !category,
+      !userEmail,
+      !sellerEmail,
+      !mobile,
+      !bookingDate), !imageUrl
+  )
+  {
+    return new NextResponse("Missing Feilds", {status: 400});
   }
 
   const booking = await prisma.booking.create({
@@ -36,11 +39,12 @@ export async function POST(request) {
       sellerName,
       userEmail,
       sellerEmail,
+      imageUrl,
       mobile,
       category,
       price,
       bookingDate,
-      creator: { connect: { email: creatorEmail.toLowerCase() } },
+      creator: {connect: {email: creatorEmail.toLowerCase()}},
     },
   });
 

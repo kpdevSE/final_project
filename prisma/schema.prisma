@@ -141,6 +141,7 @@ model Booking {
   bookingDate   String?
   category      String?
   creatorEmail  String?
+  imageUrl      String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -150,5 +151,15 @@ model Rating {
   comments      String
   eventz        Eventz   @relation(fields: [eventzId], references: [id])
   eventzId      String   @db.ObjectId
+  creator       String
+}
+
+model Payment {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  cardNumber    String
+  month         String
+  year          String
+  cvv           String
   creator       String
 }
