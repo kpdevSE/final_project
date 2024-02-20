@@ -3,7 +3,7 @@
 import Loader from '@/app/components/loader';
 import PaymentMethod from '@/app/components/payment.components';
 import RecentPayment from '@/app/components/paymenthistory';
-import {Button, Modal} from 'antd';
+import {Modal} from 'antd';
 import {getSession, useSession} from "next-auth/react";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
@@ -109,9 +109,9 @@ export default function MyBooking()
   return (
     <div>
       <div>
-        <Button className="hidden lg:block bg-black text-white w-[60px] h-[45px]  items-center justify-center" onClick={() => setOpen(true)} >
-          <FaShoppingCart className="w-[30px] h-[30px] " />
-        </Button>
+        <div className=" text-black  items-center justify-center" onClick={() => setOpen(true)} >
+          <FaShoppingCart className="w-[30px] h-[30px] hover:cursor-pointer" />
+        </div>
         <Modal
           title="My Bookings"
           open={open}

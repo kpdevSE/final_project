@@ -59,7 +59,6 @@ export default function VendorComments({id})
                     })}
                 </div>)}
             </div>
-
         </div>
     );
 }
