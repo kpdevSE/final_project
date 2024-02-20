@@ -8,6 +8,7 @@ import card from '../../public/logo/SL-110820-37810-12.jpg';
 import cupmup from '../../public/logo/computop.png';
 import master from '../../public/logo/mastercard-id-check.png';
 import paypal from '../../public/logo/verified-by-visa.png';
+import RecentPayment from './paymenthistory';
 
 
 const PaymentMethod = () =>
@@ -46,6 +47,7 @@ const PaymentMethod = () =>
             {
                 toast.success("Payment Successfully");
                 setLoading(false);
+                window.location.reload();
             } else
             {
                 toast.error("Payment Failed");
@@ -122,8 +124,13 @@ const PaymentMethod = () =>
                                     </div>) : ("Proceed")
                                 }
                             </button>
+                            <div className='mt-2'>
+                                <RecentPayment />
+                            </div>
                         </form>
+
                     </div>
+
                 </div>
             </Modal>
         </>

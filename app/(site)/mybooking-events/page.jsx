@@ -233,6 +233,7 @@ export default function MyBooking()
                             )}
                           </button>
                           <PaymentMethod />
+
                         </div>
 
 
