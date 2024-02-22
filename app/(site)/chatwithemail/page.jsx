@@ -1,31 +1,37 @@
 "use client";
 import Navigation from "@/app/components/navigation.component";
 import VendorsEmail from "@/app/components/vendors-email";
-import { useState } from "react";
+import {useState} from "react";
 import toast from "react-hot-toast";
 
-export default function ChatWithEmail() {
+export default function ChatWithEmail()
+{
   const [from, setFrom] = useState();
   const [to, setTo] = useState();
   const [subject, setSubject] = useState();
   const [message, setMessage] = useState();
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
 
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = async () =>
+  {
+    setloading(true)
     const response = await fetch("api/sendMail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ to, subject, message, from }),
+      body: JSON.stringify({to, subject, message, from}),
     })
-      .then(() => {
-        if (response.ok) {
+      .then(() =>
+      {
+        if (response.ok)
+        {
           toast.success("Email Send Successfully");
         }
         setloading(false);
       })
-      .catch((error) => {
+      .catch((error) =>
+      {
         toast.error("Something went wrong ", error);
       });
   };
@@ -45,7 +51,8 @@ export default function ChatWithEmail() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               value={from}
-              onChange={(e) => {
+              onChange={(e) =>
+              {
                 setFrom(e.target.value);
               }}
               required
@@ -64,7 +71,8 @@ export default function ChatWithEmail() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               value={to}
-              onChange={(e) => {
+              onChange={(e) =>
+              {
                 setTo(e.target.value);
               }}
               required
@@ -84,7 +92,8 @@ export default function ChatWithEmail() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               value={subject}
-              onChange={(e) => {
+              onChange={(e) =>
+              {
                 setSubject(e.target.value);
               }}
               required
@@ -104,7 +113,8 @@ export default function ChatWithEmail() {
               rows="10"
               className="w-full border border-b-2 border-black"
               value={message}
-              onChange={(e) => {
+              onChange={(e) =>
+              {
                 setMessage(e.target.value);
               }}
               required
@@ -114,7 +124,7 @@ export default function ChatWithEmail() {
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            {!loading ? "Please Wait" : "Send a Message"}
+            {loading ? (<span className="loading loading-ring loading-md"></span>) : ("Send")}
           </button>
         </form>
       </div>
