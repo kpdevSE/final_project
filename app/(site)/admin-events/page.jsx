@@ -23,12 +23,14 @@ export default function AdminEvents({params})
   {
     try
     {
+      setloading(true)
       const response = await fetch("/api/get-all-events");
 
       if (response.ok)
       {
         const result = await response.json();
         setData(result.events);
+        setloading(false)
         console.log(result.events);
       } else
       {
@@ -44,10 +46,6 @@ export default function AdminEvents({params})
   useEffect(() =>
   {
     fetchData();
-    setTimeout(() =>
-    {
-      setloading(false);
-    }, 1500);
   }, []);
 
   const [searchQuery, setSearchQuery] = useState("");

@@ -26,9 +26,10 @@ export default function AdminLogin()
   {
     setTimeout(() =>
     {
-      setLoading(false);
-    }, 1500);
-  });
+      setLoading(false)
+    }, 1000)
+  })
+
 
   const handleLogin = () =>
   {
