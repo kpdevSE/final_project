@@ -1,20 +1,21 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import {Dialog, Transition} from "@headlessui/react";
+import {XMarkIcon} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, useState } from "react";
-import { RiMailSendFill } from "react-icons/ri";
+import {Fragment, useState} from "react";
+import {RiMailSendFill} from "react-icons/ri";
 
 // Images
 import logoImage from "../../public/logo/logo.png";
 
 // Icons
-import { MdDashboard, MdEmojiEvents } from "react-icons/md";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import {MdDashboard, MdEmojiEvents, MdEventNote} from "react-icons/md";
+import {RiLogoutBoxLine} from "react-icons/ri";
 
-export default function VendorNavigationPanel() {
+export default function VendorNavigationPanel()
+{
   const [open, setOpen] = useState(false);
   return (
     <div className="fixed top-3">
@@ -25,7 +26,8 @@ export default function VendorNavigationPanel() {
         strokeWidth="1.5"
         stroke="currentColor"
         className="w-6 h-6 "
-        onClick={() => {
+        onClick={() =>
+        {
           setOpen(true);
         }}>
         <path
@@ -91,6 +93,12 @@ export default function VendorNavigationPanel() {
                               <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
                                 <MdDashboard className="w-[30px] h-[30px]" />
                                 <li className="text-lg">Dashboard</li>
+                              </div>
+                            </Link>
+                            <Link href={"/admin-add-event"}>
+                              <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
+                                <MdEventNote className="w-[30px] h-[30px]" />
+                                <li className="text-lg">Add a Event</li>
                               </div>
                             </Link>
                             <Link href={"/vendor-events"}>

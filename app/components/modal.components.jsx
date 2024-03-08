@@ -233,7 +233,7 @@ export default function ModalComponents({price, fName, lName, des, eventzEmail, 
               <p className="text-lg font-semibold"> <span className="text-xl">{eventsOption}</span></p>
             </div>
 
-            <div className="flex flex-col items-center justify-between w-full lg:flex-row gap-3 mt-8">
+            <div className="flex flex-col items-center justify-between w-full lg:flex-row gap-3 mt-8 p-2">
               <div className="lg:w-[50%] w-full">
                 <Image src={eventsImage} alt="" className="w-full h-full rounded-xl" width={250} height={250} />
               </div>

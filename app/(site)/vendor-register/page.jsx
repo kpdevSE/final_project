@@ -35,7 +35,7 @@ export default function Registetr()
   const registerUser = async (e) =>
   {
     e.preventDefault();
-    const response = await fetch("/api/vendor-register", {
+    const response = await fetch("/api/ve-resgister", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,14 +45,23 @@ export default function Registetr()
 
     if (!response.ok)
     {
-      console.error("Request failed:", response.status, response.statusText);
+      console.log("Request failed:", response.status, response.statusText);
       toast.error("Registration Failed");
-    } else
+      return;
+    }
+
+    const responseData = await response.json();
+    const {token} = responseData;
+    localStorage.setItem('token', token);
+    console.log(token);
+
+    if (response.ok)
     {
       toast.success("User Registration Successfully");
       router.push("/vendor-logins");
     }
   };
+
 
   return (
     <div>
