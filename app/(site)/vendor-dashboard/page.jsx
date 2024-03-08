@@ -4,6 +4,7 @@ import Footer from "@/app/components/footer";
 import LoadingScreen from "@/app/components/loading.component";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import axios from "axios";
+import {useRouter} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -12,6 +13,7 @@ import "../vendor-dashboard/style.module.css";
 export default function VendorDahsboard()
 {
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
   const [date, setDate] = useState(new Date());
   const chartRef = useRef(null);
   const data = [12, 19, 3, 5, 2, 3];
@@ -23,6 +25,14 @@ export default function VendorDahsboard()
   };
 
   const [email, setEmail] = useState('');
+  function logout()
+  {
+    // Remove token from local storage or invalidate it on the server-side
+    localStorage.removeItem('token');
+
+    // Redirect the user to the login page or any other desired destination
+    router.push('/vendor-logins');
+  }
 
   useEffect(() =>
   {
@@ -38,12 +48,16 @@ export default function VendorDahsboard()
         .then(response =>
         {
           setEmail(response.data.email);
-          console.log(email)
+          console.log(email);
         })
         .catch(error =>
         {
           console.error('Error fetching user email:', error);
         });
+    }
+    else
+    {
+      router.push('/vendor-logins')
     }
 
     setTimeout(() =>
@@ -68,6 +82,7 @@ export default function VendorDahsboard()
               </div>
               <div className="w-[100%] h-full md:w-full lg:w-[65%] flex items-center justify-center">
                 welcome, {email}
+                <button onClick={logout}>Logout</button>
               </div>
             </div>
           </div>
