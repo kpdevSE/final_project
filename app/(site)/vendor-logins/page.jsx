@@ -15,8 +15,9 @@ export default function VendorLogin()
     password: ""
   })
 
-  const handleLogin = async () =>
+  const handleLogin = async (e) =>
   {
+    e.preventDefault();
     try
     {
       const response = await fetch("/api/ve-login", {
@@ -27,42 +28,28 @@ export default function VendorLogin()
         body: JSON.stringify(data),
       })
 
-      if (response.headers.get("content-type")?.includes("application/json"))
+      if (response.ok)
       {
-
-        const responseData = await response.clone().json();
-        const {token} = responseData;
-
+        const {token} = await response.json();
         localStorage.setItem('token', token);
-
-        toast.success("User logged in successfully",
-          {
-            position: "top-right"
-          });
-
-        router.push('/vendor-dashboard')
-        // Redirect to dashboard or perform other actions after successful login
+        router.push('/vendor-dashboard');
       } else
       {
-        // Handle non-JSON responses here
-        const text = await response.text();
-        throw new Error(`Expected JSON, got: ${text}`);
+        toast.success("Authntication Failed", {
+          position: "top-right"
+        })
+        console.error('Authentication failed');
       }
-
-
-
-
     } catch (error)
     {
       console.error("Error logging in user:", error);
 
-      toast.error("Failed to log in. Please try again later.");
+      toast.error("Failed to log in. Please try again later.", {
+        position: "top-right"
+      });
     }
 
   };
-
-
-
 
   return (
     <div>
@@ -124,9 +111,10 @@ export default function VendorLogin()
 
             <button
               type="submit"
-              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center " onClick={() =>
+              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center " onClick={(e) =>
               {
-                handleLogin()
+                e.preventDefault()
+                handleLogin(e)
               }}>
               Submit
             </button>
