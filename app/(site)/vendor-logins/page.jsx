@@ -10,31 +10,59 @@ import logo from '../../../public/logo/logo.png';
 export default function VendorLogin()
 {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [data, setData] = useState({
+    email: "",
+    password: ""
+  })
 
-  const loginFunction = async (e) =>
+  const handleLogin = async () =>
   {
-    e.preventDefault();
-    const response = await fetch("/api/vendor-login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({email, password}),
-    });
+    try
+    {
+      const response = await fetch("/api/ve-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-    if (response.ok)
+      if (response.headers.get("content-type")?.includes("application/json"))
+      {
+
+        const responseData = await response.clone().json();
+        const {token} = responseData;
+
+        localStorage.setItem('token', token);
+
+        toast.success("User logged in successfully",
+          {
+            position: "top-right"
+          });
+
+        router.push('/vendor-dashboard')
+        // Redirect to dashboard or perform other actions after successful login
+      } else
+      {
+        // Handle non-JSON responses here
+        const text = await response.text();
+        throw new Error(`Expected JSON, got: ${text}`);
+      }
+
+
+
+
+    } catch (error)
     {
-      const data = await response.json();
-      console.log(data);
-      toast.success("Login Successfully");
-      router.push("/vendor-dashboard");
-    } else
-    {
-      toast.error("Login Failed");
+      console.error("Error logging in user:", error);
+
+      toast.error("Failed to log in. Please try again later.");
     }
+
   };
+
+
+
 
   return (
     <div>
@@ -48,7 +76,7 @@ export default function VendorLogin()
           <div className="flex items-center justify-center relative lg:bottom-24 bottom-0">
             <Image src={logo} alt="" />
           </div>
-          <form className=" w-full" onSubmit={loginFunction}>
+          <form className=" w-full" >
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="email"
@@ -57,8 +85,13 @@ export default function VendorLogin()
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={data.email}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    email: e.target.value,
+                  })
+                }
               />
               <label
                 htmlFor="floating_email"
@@ -74,8 +107,13 @@ export default function VendorLogin()
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={data.password}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    password: e.target.value,
+                  })
+                }
               />
               <label
                 htmlFor="floating_password"
@@ -86,7 +124,10 @@ export default function VendorLogin()
 
             <button
               type="submit"
-              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center ">
+              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center " onClick={() =>
+              {
+                handleLogin()
+              }}>
               Submit
             </button>
           </form>

@@ -3,6 +3,7 @@ import Carousle from "@/app/components/carousel";
 import Footer from "@/app/components/footer";
 import LoadingScreen from "@/app/components/loading.component";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
+import axios from "axios";
 import {useEffect, useRef, useState} from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -21,8 +22,30 @@ export default function VendorDahsboard()
     setDate(newDate);
   };
 
+  const [email, setEmail] = useState('');
+
   useEffect(() =>
   {
+    const token = localStorage.getItem('token');
+    if (token)
+    {
+      // Fetch user email using the token
+      axios.get('/api/vendor-profile', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(response =>
+        {
+          setEmail(response.data.email);
+          console.log(email)
+        })
+        .catch(error =>
+        {
+          console.error('Error fetching user email:', error);
+        });
+    }
+
     setTimeout(() =>
     {
       setLoading(false);
@@ -44,7 +67,7 @@ export default function VendorDahsboard()
                 <Calendar onChange={onChange} value={date} />
               </div>
               <div className="w-[100%] h-full md:w-full lg:w-[65%] flex items-center justify-center">
-                <h1>Kanishka</h1>
+                welcome, {email}
               </div>
             </div>
           </div>
