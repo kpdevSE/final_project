@@ -22,11 +22,6 @@ export default function VendorDahsboard()
     setDate(newDate);
   };
 
-  useEffect(() =>
-  {
-
-  }, [data, labels]);
-
   const [email, setEmail] = useState('');
 
   useEffect(() =>
@@ -55,7 +50,7 @@ export default function VendorDahsboard()
     {
       setLoading(false);
     }, 1500);
-  }, []);
+  }, [data, labels]);
   return (
     <div>
       {loading ? (

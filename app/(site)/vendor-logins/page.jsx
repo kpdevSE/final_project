@@ -17,31 +17,51 @@ export default function VendorLogin()
 
   const handleLogin = async () =>
   {
-    const response = await fetch("/api/ve-login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then(async () =>
+    try
     {
-      const responseData = await response.json();
+      const response = await fetch("/api/ve-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-      const {token} = responseData;
-      localStorage.setItem('token', token);
+      if (response.headers.get("content-type")?.includes("application/json"))
+      {
 
-      console.log(token, "token set successfully");
+        const responseData = await response.clone().json();
+        const {token} = responseData;
+
+        localStorage.setItem('token', token);
+
+        toast.success("User logged in successfully",
+          {
+            position: "top-right"
+          });
+
+        router.push('/vendor-dashboard')
+        // Redirect to dashboard or perform other actions after successful login
+      } else
+      {
+        // Handle non-JSON responses here
+        const text = await response.text();
+        throw new Error(`Expected JSON, got: ${text}`);
+      }
 
 
-      toast.success("User login Successfully");
-      router.push("/vendor-dashboard");
 
-    }).catch((error) =>
+
+    } catch (error)
     {
-      toast.error("login Failed")
-      console.log(error)
-    })
+      console.error("Error logging in user:", error);
+
+      toast.error("Failed to log in. Please try again later.");
+    }
+
   };
+
+
 
 
   return (
@@ -56,7 +76,7 @@ export default function VendorLogin()
           <div className="flex items-center justify-center relative lg:bottom-24 bottom-0">
             <Image src={logo} alt="" />
           </div>
-          <form className=" w-full" onSubmit={handleLogin}>
+          <form className=" w-full" >
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="email"
@@ -104,7 +124,10 @@ export default function VendorLogin()
 
             <button
               type="submit"
-              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center ">
+              className="text-white w-full bg-[#515DEF] font-medium  text-sm  sm:w-auto px-5 py-2.5 text-center " onClick={() =>
+              {
+                handleLogin()
+              }}>
               Submit
             </button>
           </form>
