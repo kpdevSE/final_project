@@ -1,6 +1,6 @@
 "use client";
-import AdminNavigationPanel from "@/app/components/admin-navigation";
 import Footer from "@/app/components/footer";
+import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import {UploadDropzone} from "@uploadthing/react";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
@@ -74,7 +74,7 @@ export default function AdminAddEvent()
   return (
     <div>
       <div className="w-[85%] mx-auto h-full">
-        <AdminNavigationPanel />
+        <VendorNavigationPanel />
         <h3 className="lg:text-3xl text-xl font-semibold mt-16 text-center">
           Eventz Adding Page
         </h3>
