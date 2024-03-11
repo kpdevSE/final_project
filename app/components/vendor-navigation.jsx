@@ -12,7 +12,6 @@ import logoImage from "../../public/logo/logo.png";
 
 // Icons
 import {MdDashboard, MdEmojiEvents, MdEventNote} from "react-icons/md";
-import {RiLogoutBoxLine} from "react-icons/ri";
 
 export default function VendorNavigationPanel()
 {
@@ -111,13 +110,6 @@ export default function VendorNavigationPanel()
                               <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
                                 <RiMailSendFill className="w-[30px] h-[30px]" />
                                 <li className="text-lg">Send Mail</li>
-                              </div>
-                            </Link>
-
-                            <Link href={"/vendor-logins"} className="text-lg">
-                              <div className="flex items-center justify-start gap-3 pl-3 pr-4 hover:bg-black hover:text-white font-bold rounded w-[100%] h-[50px] transform ">
-                                <RiLogoutBoxLine className="w-[30px] h-[30px]" />
-                                Logout
                               </div>
                             </Link>
                           </ul>

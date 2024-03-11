@@ -32,10 +32,13 @@ export default function VendorLogin()
       {
         const {token} = await response.json();
         localStorage.setItem('token', token);
+        toast.success("User login Successfully", {
+          position: "top-right"
+        })
         router.push('/vendor-dashboard');
       } else
       {
-        toast.success("Authntication Failed", {
+        toast.error("Authntication Failed", {
           position: "top-right"
         })
         console.error('Authentication failed');
