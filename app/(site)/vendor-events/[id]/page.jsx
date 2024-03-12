@@ -1,3 +1,4 @@
+import EventsUpdateModalButton from "@/app/components/eventz-update-modal";
 import Footer from "@/app/components/footer";
 import VendorNavigationPanel from "@/app/components/vendor-navigation";
 import VendorComments from "@/app/components/vendorcomments";
@@ -62,6 +63,7 @@ export default async function SingleEvent({params})
                   <FaMobileAlt className="text-xl" />
                   <p>{eventz.number}</p>
                 </div>
+                <EventsUpdateModalButton />
               </div>
             </div>
           </div>
